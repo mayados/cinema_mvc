@@ -11,6 +11,8 @@
     // On instancie la class CinemaController
     $ctrlCinema = new CinemaController();
 
+    $id = (isset($_GET["id"])) ? $_GET["id"] : null;
+
     /* S'il y a une action transmise par l'url en GET */
     if(isset($_GET["action"])){
         /* Pour l'action reçue, on traite le case qui correspond au nom de l'action  */
@@ -20,6 +22,7 @@
             case "listActeurs" : $ctrlCinema->listActeurs(); break;
             case "listGenres" : $ctrlCinema->listGenres(); break;
             case "listRoles" : $ctrlCinema->listRoles(); break;
+            case "detailFilm" : $ctrlCinema->detailFilm($id); break;
         }
     }
 
