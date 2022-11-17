@@ -1,8 +1,11 @@
 <?php
 
 /* Dans ce fichier, on déclare la base de données */
+
+/* Le namespace de la class Connect est Model */
 namespace Model;
 
+//La class Connect est abstraite car on ne l'instanciera jamais, on aura seulement besoin d'accéder à la méthode seConnecter
 abstract class Connect {
 
     // Les constantes appartiennent à une class, pas à une instanciation
