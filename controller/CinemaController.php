@@ -53,6 +53,32 @@ class CinemaController {
         require "view/listActeurs.php";
     }
 
+    public function listGenres() {
+
+        //On stocke dans une variable $pdo la connection à la base de données
+        $pdo = Connect::seConnecter();
+        $requete = $pdo->query("
+            SELECT libelle
+            FROM genre
+        ");
+
+        // On relie à la vue qui nous intéresse
+        require "view/listGenres.php";
+    }
+
+    public function listRoles() {
+
+        //On stocke dans une variable $pdo la connection à la base de données
+        $pdo = Connect::seConnecter();
+        $requete = $pdo->query("
+            SELECT nom_role
+            FROM role
+        ");
+
+        // On relie à la vue qui nous intéresse
+        require "view/listRoles.php";
+    }
+
 }
 
 ?>
