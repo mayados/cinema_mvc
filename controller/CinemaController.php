@@ -18,9 +18,39 @@ class CinemaController {
             SELECT titre, date_sortie
             FROM film
         ");
-        
+
         // On relie à la vue qui nous intéresse
         require "view/listFilms.php";
+    }
+
+    public function listRealisateurs() {
+
+        //On stocke dans une variable $pdo la connection à la base de données
+        $pdo = Connect::seConnecter();
+        $requete = $pdo->query("
+            SELECT nom, prenom
+            FROM personne 
+            NATURAL JOIN realisateur
+            WHERE id_realisateur IS NOT NULL
+        ");
+
+        // On relie à la vue qui nous intéresse
+        require "view/listRealisateurs.php";
+    }
+
+    public function listActeurs() {
+
+        //On stocke dans une variable $pdo la connection à la base de données
+        $pdo = Connect::seConnecter();
+        $requete = $pdo->query("
+            SELECT nom, prenom
+            FROM personne 
+            NATURAL JOIN acteur
+            WHERE id_acteur IS NOT NULL
+        ");
+
+        // On relie à la vue qui nous intéresse
+        require "view/listActeurs.php";
     }
 
 }
