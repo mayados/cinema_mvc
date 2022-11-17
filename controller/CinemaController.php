@@ -79,6 +79,25 @@ class CinemaController {
         require "view/listRoles.php";
     }
 
+    public function detailFilm($id) {
+
+        //On stocke dans une variable $pdo la connection à la base de données
+        $pdo = Connect::seConnecter();
+        $requete = $pdo->query("
+            SELECT id_film, titre, duree, date_sortie, synopsis, nom, prenom, nom_role
+            FROM casting
+            LEFT JOIN acteur ON casting.id_acteur = acteur.id_acteur
+            NATURAL JOIN film
+            NATURAL JOIN personne
+            NATURAL JOIN role 
+            WHERE id_film = ".$id."
+        ");
+
+        // On relie à la vue qui nous intéresse
+        require "view/detailFilm.php";
+    }
+
+
 }
 
 ?>
