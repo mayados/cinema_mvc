@@ -178,6 +178,38 @@ class CinemaController {
         require "view/detailRole.php";
     }
 
+    /* Pour rediriger sur la vue "ajoutActeur.php" pour accéder au formulaire */
+    public function ajoutActeur() {
+        // On relie à la vue qui nous intéresse
+        require "view/ajoutActeur.php";
+    }
+
+    public function insertActeur($nom,$prenom,$sexe,$dateNaissance){
+       
+        //On stocke dans une variable $pdo la connection à la base de données
+        $pdo = Connect::seConnecter();
+        /* L'élément id en paramètres est un élément variable, il faut donc prepare() pour s'assurer que ce qui est entré en paramètres correspond bien à ce qu'on nous demande */
+        $requete = $pdo->prepare("
+            INSERT INTO
+            personne(nom,prenom,sexe,date_naissance)
+            VALUES('$nom','$prenom','$sexe','$dateNaissance')
+        ");
+        /* On execute si l'id entré est bien égal à l'id de la bdd */
+        $requete->execute();
+
+        $last = $pdo->lastInsertId();
+        $acteur = $pdo->prepare("
+            INSERT INTO
+            acteur(id_personne)
+            VALUES('$last')
+    ");
+
+    $acteur->execute();
+
+        // On relie à la vue qui nous intéresse
+        require "view/ajoutActeur.php"; 
+    }
+
 }
 
 
