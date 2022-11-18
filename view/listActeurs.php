@@ -5,15 +5,15 @@
     <table>
         <thead>
             <tr>
-                <th>TITRE</th>
-                <th>DATE DE SORTIE</th>
+                <th>NOM</th>
+                <th>PRENOM</th>
             </tr>
         </thead>
         <tbody>
             <?php
                 foreach($requete->fetchAll() as $acteur) { ?>
                     <tr>
-                        <td><?=$acteur["nom"] ?></td>
+                        <td><a href="index.php?action=detailActeur&id=<?= $acteur['id_acteur']?>"><?=$acteur["nom"] ?></td>
                         <td><?=$acteur["prenom"] ?></td>
                     </tr>
             <?php } ?>   
