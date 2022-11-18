@@ -59,7 +59,7 @@ class CinemaController {
         //On stocke dans une variable $pdo la connection à la base de données
         $pdo = Connect::seConnecter();
         $requete = $pdo->query("
-            SELECT libelle
+            SELECT libelle, id_genre
             FROM genre
         ");
 
@@ -72,7 +72,7 @@ class CinemaController {
         //On stocke dans une variable $pdo la connection à la base de données
         $pdo = Connect::seConnecter();
         $requete = $pdo->query("
-            SELECT nom_role
+            SELECT nom_role, id_role
             FROM role
         ");
 
@@ -138,6 +138,48 @@ class CinemaController {
         require "view/detailActeur.php";
     }
 
+    public function detailGenre($id) {
+
+        //On stocke dans une variable $pdo la connection à la base de données
+        $pdo = Connect::seConnecter();
+        /* L'élément id en paramètres est un élément variable, il faut donc prepare() pour s'assurer que ce qui est entré en paramètres correspond bien à ce qu'on nous demande */
+        $requete = $pdo->prepare("
+            SELECT libelle, id_genre, titre
+            FROM film
+            NATURAL JOIN genre
+            NATURAL JOIN associer
+            WHERE id_genre = :id
+        ");
+        /* On execute si l'id entré est bien égal à l'id de la bdd */
+        $requete->execute(["id"=> $id]);
+
+        // On relie à la vue qui nous intéresse
+        require "view/detailGenre.php";
+    }
+
+    public function detailRole($id) {
+
+        //On stocke dans une variable $pdo la connection à la base de données
+        $pdo = Connect::seConnecter();
+        /* L'élément id en paramètres est un élément variable, il faut donc prepare() pour s'assurer que ce qui est entré en paramètres correspond bien à ce qu'on nous demande */
+        $requete = $pdo->prepare("
+            SELECT nom_role,nom, prenom, titre, id_acteur
+            FROM role
+            NATURAL JOIN personne
+            NATURAL JOIN acteur
+            NATURAL JOIN film
+            NATURAL JOIN casting
+            WHERE id_role = :id
+        ");
+        /* On execute si l'id entré est bien égal à l'id de la bdd */
+        $requete->execute(["id"=> $id]);
+
+        // On relie à la vue qui nous intéresse
+        require "view/detailRole.php";
+    }
+
 }
+
+
 
 ?>
