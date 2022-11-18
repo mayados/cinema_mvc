@@ -28,22 +28,9 @@
             case "detailGenre" : $ctrlCinema->detailGenre($id); break;
             case "detailRole" : $ctrlCinema->detailRole($id); break;
             case "ajoutActeur" : $ctrlCinema->ajoutActeur(); break; 
-            case "insertActeur":
-                /* On verifie que cela a bien été soumis via le formulaire */
-                if(isset($_POST['submit'])){
-                    /* On filtre les input et textarea pour ne pas qu'il y ait des failles allant contre la sécurité */
-                    $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_SPECIAL_CHARS);
-                    $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_SPECIAL_CHARS);
-                    $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_SPECIAL_CHARS);
-                    $dateNaissance = filter_input(INPUT_POST, "dateNaissance", FILTER_SANITIZE_SPECIAL_CHARS);
-    
-                    /* Si nous avons tous les champs remplis correctement */
-                    if($nom && $prenom && $sexe && $dateNaissance){
-                        /* Si toutes les vérifications sont correctes, on appelle la fonction, avec les valeurs saisies */
-                        $ctrlCinema->insertActeur($nom,$prenom,$sexe,$dateNaissance);
-                    }
-                }       
-            break;
+            case "insertActeur": $ctrlCinema->insertActeur(); break; 
+            case "ajoutRealisateur": $ctrlCinema->ajoutRealisateur(); break; 
+            case "insertRealisateur": $ctrlCinema->insertRealisateur(); break; 
         }
     }
 
