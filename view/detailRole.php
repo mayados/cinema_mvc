@@ -1,6 +1,6 @@
 <?php ob_start();?>
 
-<p>Ce role a été joué par <?= $requete->rowCount() ?> acteurs</p>
+<p>Ce personnage a été incarné par <?= $requete->rowCount() ?> acteurs</p>
 
     <table>
         <thead>
@@ -11,7 +11,9 @@
         </thead>
         <tbody>
             <?php
-                foreach($requete->fetchAll() as $role) { ?>
+                foreach($requete->fetchAll() as $role) { 
+                    $nomRole = $role["nom_role"];
+                    ?>
                     <tr>
                         <td><?=$role["titre"] ?></td>
                         <td><?=$role["nom"] ?></td>
@@ -25,7 +27,7 @@
     
     /* On stocke dans des variables les titres qui seront affectés sur la page template */
     $titre = "informations sur le genre";
-    $titre_secondaire = "informations du genre";
+    $titre_secondaire = "Role : ".$nomRole;
     /* ob_start et ob_get_clean permettent d'aspirer les informations qui se situent entre ces deux fonctions, ainsi, nous pourrons envoyer tout ça sur une autre page
     Ici, nous stockons tout cela dans une variable $contenu */
     $contenu = ob_get_clean();
