@@ -188,7 +188,8 @@ class CinemaController {
        
         //On stocke dans une variable $pdo la connection à la base de données
         $pdo = Connect::seConnecter();
-        /* L'élément id en paramètres est un élément variable, il faut donc prepare() pour s'assurer que ce qui est entré en paramètres correspond bien à ce qu'on nous demande */
+        /* Les éléments en paramètres sont des éléments saisis par un utilisateur, il faut donc prepare() pour s'assurer que ce qui est entré en paramètres correspond bien à ce qu'on nous demande */
+        /* D'abord on fait la requête pour ajouter une personne, car un acteur est tout d'abord une personne */
         $requete = $pdo->prepare("
             INSERT INTO
             personne(nom,prenom,sexe,date_naissance)
@@ -197,7 +198,9 @@ class CinemaController {
         /* On execute si l'id entré est bien égal à l'id de la bdd */
         $requete->execute();
 
+        /* On stocke le dernier id inséré dans la variable $last */
         $last = $pdo->lastInsertId();
+        /* Ensuite on fait la requete pour que le dernier id inséré dans labase de donné soit ajouté à la colonne "id_personne  de la tableacteur*/
         $acteur = $pdo->prepare("
             INSERT INTO
             acteur(id_personne)
