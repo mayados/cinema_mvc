@@ -5,21 +5,18 @@
     <table>
         <thead>
             <tr>
-                <th>NOM</th>
-                <th>PRENOM</th>
-                <th>SEXE</th>
-                <th>NAISSANCE</th>
-                <th>TITRE FILMS JOUES</th>
+                <th>FILMOGRAPHIE</th>
             </tr>
         </thead>
         <tbody>
             <?php
-                foreach($requete->fetchAll() as $acteur) { ?>
+                foreach($requete->fetchAll() as $acteur) { 
+                        $acteurNom = $acteur["nom"];
+                        $acteurPrenom = $acteur["prenom"]; 
+                        $acteurSexe = $acteur["sexe"];
+                        $acteurNaissance = $acteur["date_naissance"];
+                    ?>
                     <tr>
-                        <td><?=$acteur["nom"] ?></td>
-                        <td><?=$acteur["prenom"] ?></td>
-                        <td><?=$acteur["sexe"] ?></td>
-                        <td><?=$acteur["date_naissance"] ?></td>
                         <td><?=$acteur["titre"] ?></td>
                     </tr>
             <?php } ?>   
@@ -30,7 +27,7 @@
     
     /* On stocke dans des variables les titres qui seront affectés sur la page template */
     $titre = "informations acteur";
-    $titre_secondaire = "informations de l'acteur";
+    $titre_secondaire = "Acteur : ".$acteurNom." ".$acteurPrenom." (".$acteurSexe." ".$acteurNaissance.")";
     /* ob_start et ob_get_clean permettent d'aspirer les informations qui se situent entre ces deux fonctions, ainsi, nous pourrons envoyer tout ça sur une autre page
     Ici, nous stockons tout cela dans une variable $contenu */
     $contenu = ob_get_clean();
