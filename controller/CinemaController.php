@@ -184,33 +184,100 @@ class CinemaController {
         require "view/ajoutActeur.php";
     }
 
-    public function insertActeur($nom,$prenom,$sexe,$dateNaissance){
+    public function insertActeur(){
+        /* On verifie que cela a bien été soumis via le formulaire */
+        if(isset($_POST['submit'])){
+            /* On filtre les input et textarea pour ne pas qu'il y ait des failles allant contre la sécurité */
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_SPECIAL_CHARS);
+            $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_SPECIAL_CHARS);
+            $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_SPECIAL_CHARS);
+            $dateNaissance = filter_input(INPUT_POST, "dateNaissance",FILTER_SANITIZE_SPECIAL_CHARS); 
+
+             /* Si nous avons tous les champs remplis correctement */
+             if($nom && $prenom && $sexe && $dateNaissance){
+                /* Si toutes les vérifications sont correctes, on peut executer */
+                
+                //On stocke dans une variable $pdo la connection à la base de données
+                $pdo = Connect::seConnecter();
+                /* Les éléments en paramètres sont des éléments saisis par un utilisateur, il faut donc prepare() pour s'assurer que ce qui est entré en paramètres correspond bien à ce qu'on nous demande */
+                /* D'abord on fait la requête pour ajouter une personne, car un acteur est tout d'abord une personne */
+                $requete = $pdo->prepare("
+                    INSERT INTO
+                    personne(nom,prenom,sexe,date_naissance)
+                    VALUES('$nom','$prenom','$sexe','$dateNaissance')
+                ");
+                /* On execute si l'id entré est bien égal à l'id de la bdd */
+                $requete->execute();
+
+                /* On stocke le dernier id inséré dans la variable $last */
+                $last = $pdo->lastInsertId();
+                /* Ensuite on fait la requete pour que le dernier id inséré dans labase de donné soit ajouté à la colonne "id_personne  de la tableacteur*/
+                 $acteur = $pdo->prepare("
+                INSERT INTO
+                acteur(id_personne)
+                VALUES('$last')
+                ");
+
+                $acteur->execute();
+
+                        // On relie à la vue qui nous intéresse
+                        require "view/ajoutActeur.php"; 
+
+
+            }
+        }        
        
-        //On stocke dans une variable $pdo la connection à la base de données
-        $pdo = Connect::seConnecter();
-        /* Les éléments en paramètres sont des éléments saisis par un utilisateur, il faut donc prepare() pour s'assurer que ce qui est entré en paramètres correspond bien à ce qu'on nous demande */
-        /* D'abord on fait la requête pour ajouter une personne, car un acteur est tout d'abord une personne */
-        $requete = $pdo->prepare("
-            INSERT INTO
-            personne(nom,prenom,sexe,date_naissance)
-            VALUES('$nom','$prenom','$sexe','$dateNaissance')
-        ");
-        /* On execute si l'id entré est bien égal à l'id de la bdd */
-        $requete->execute();
+    }
 
-        /* On stocke le dernier id inséré dans la variable $last */
-        $last = $pdo->lastInsertId();
-        /* Ensuite on fait la requete pour que le dernier id inséré dans labase de donné soit ajouté à la colonne "id_personne  de la tableacteur*/
-        $acteur = $pdo->prepare("
-            INSERT INTO
-            acteur(id_personne)
-            VALUES('$last')
-    ");
-
-    $acteur->execute();
-
+    public function ajoutRealisateur() {
         // On relie à la vue qui nous intéresse
-        require "view/ajoutActeur.php"; 
+        require "view/ajoutRealisateur.php";
+    }
+
+    
+    public function insertRealisateur(){
+        /* On verifie que cela a bien été soumis via le formulaire */
+        if(isset($_POST['submit'])){
+            /* On filtre les input et textarea pour ne pas qu'il y ait des failles allant contre la sécurité */
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_SPECIAL_CHARS);
+            $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_SPECIAL_CHARS);
+            $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_SPECIAL_CHARS);
+            $dateNaissance = filter_input(INPUT_POST, "dateNaissance",FILTER_SANITIZE_SPECIAL_CHARS); 
+
+             /* Si nous avons tous les champs remplis correctement */
+             if($nom && $prenom && $sexe && $dateNaissance){
+                /* Si toutes les vérifications sont correctes, on peut executer */
+                
+                //On stocke dans une variable $pdo la connection à la base de données
+                $pdo = Connect::seConnecter();
+                /* Les éléments en paramètres sont des éléments saisis par un utilisateur, il faut donc prepare() pour s'assurer que ce qui est entré en paramètres correspond bien à ce qu'on nous demande */
+                /* D'abord on fait la requête pour ajouter une personne, car un acteur est tout d'abord une personne */
+                $requete = $pdo->prepare("
+                    INSERT INTO
+                    personne(nom,prenom,sexe,date_naissance)
+                    VALUES('$nom','$prenom','$sexe','$dateNaissance')
+                ");
+                /* On execute si l'id entré est bien égal à l'id de la bdd */
+                $requete->execute();
+
+                /* On stocke le dernier id inséré dans la variable $last */
+                $last = $pdo->lastInsertId();
+                /* Ensuite on fait la requete pour que le dernier id inséré dans labase de donné soit ajouté à la colonne "id_personne  de la tableacteur*/
+                 $realisateur = $pdo->prepare("
+                INSERT INTO
+                realisateur(id_personne)
+                VALUES('$last')
+                ");
+
+                $realisateur->execute();
+
+                        // On relie à la vue qui nous intéresse
+                        require "view/ajoutRealisateur.php"; 
+
+
+            }
+        }        
+       
     }
 
 }
