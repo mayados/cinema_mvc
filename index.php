@@ -25,6 +25,8 @@
             case "detailFilm" : $ctrlCinema->detailFilm($id); break;
             case "detailRealisateur" : $ctrlCinema->detailRealisateur($id); break;
             case "detailActeur" : $ctrlCinema->detailActeur($id); break;
+            case "detailGenre" : $ctrlCinema->detailGenre($id); break;
+            case "detailRole" : $ctrlCinema->detailRole($id); break;
         }
     }
 
