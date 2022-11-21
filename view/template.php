@@ -15,7 +15,8 @@
         <a href="index.php?action=listRoles">Voir les rôles</a> 
         <a href="index.php?action=ajoutActeur">Ajouter un acteur</a>   
         <a href="index.php?action=ajoutRealisateur">Ajouter un réalisateur</a>       
-        <a href="index.php?action=ajoutGenre">Ajouter un genre</a>        
+        <a href="index.php?action=ajoutGenre">Ajouter un genre</a>      
+        <a href="index.php?action=ajoutFilm">Ajouter un film</a>     
     </nav>
     <div id="container-page">
         <div id="contenu">
