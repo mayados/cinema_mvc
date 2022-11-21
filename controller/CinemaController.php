@@ -280,6 +280,42 @@ class CinemaController {
        
     }
 
+    public function ajoutGenre() {
+        // On relie à la vue qui nous intéresse
+        require "view/ajoutGenre.php";
+    }
+
+    public function insertGenre(){
+        /* On verifie que cela a bien été soumis via le formulaire */
+        if(isset($_POST['submit'])){
+            /* On filtre les input et textarea pour ne pas qu'il y ait des failles allant contre la sécurité */
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_SPECIAL_CHARS);
+
+             /* Si nous avons tous les champs remplis correctement */
+             if($nom){
+                /* Si toutes les vérifications sont correctes, on peut executer */
+                
+                //On stocke dans une variable $pdo la connection à la base de données
+                $pdo = Connect::seConnecter();
+                /* Les éléments en paramètres sont des éléments saisis par un utilisateur, il faut donc prepare() pour s'assurer que ce qui est entré en paramètres correspond bien à ce qu'on nous demande */
+                /* D'abord on fait la requête pour ajouter une personne, car un acteur est tout d'abord une personne */
+                $requete = $pdo->prepare("
+                    INSERT INTO
+                    genre(libelle)
+                    VALUES('$nom')
+                ");
+                /* On execute si l'id entré est bien égal à l'id de la bdd */
+                $requete->execute();
+
+                // On relie à la vue qui nous intéresse
+                require "view/ajoutGenre.php"; 
+
+
+            }
+        }        
+       
+    }
+
 }
 
 
