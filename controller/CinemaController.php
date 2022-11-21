@@ -335,6 +335,40 @@ class CinemaController {
         require "view/ajoutFilm.php";
     }
 
+    public function insertFilm(){
+        /* On verifie que cela a bien été soumis via le formulaire */
+        if(isset($_POST['submit'])){
+            /* On filtre les input et textarea pour ne pas qu'il y ait des failles allant contre la sécurité */
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_SPECIAL_CHARS);
+            $duree = filter_input(INPUT_POST, "duree", FILTER_SANITIZE_SPECIAL_CHARS);
+            $dateSortie = filter_input(INPUT_POST, "dateSortie",FILTER_SANITIZE_SPECIAL_CHARS); 
+            $realisateur = $_POST["realisateur"];
+
+            var_dump($realisateur);
+
+             /* Si nous avons tous les champs remplis correctement */
+             if($nom && $duree && $dateSortie && $realisateur){
+
+                $pdo = Connect::seConnecter();
+
+                $requeteFilm = $pdo->prepare("
+                    INSERT INTO
+                    film(id_realisateur,titre,duree, date_sortie)
+                    VALUES('$realisateur','$nom','$duree','$dateSortie')
+                ");
+                /* On execute si l'id entré est bien égal à l'id de la bdd */
+                $requeteFilm->execute();
+
+                // On relie à la vue qui nous intéresse
+                require "view/ajoutFilm.php"; 
+
+
+            }
+        }        
+       
+    }
+
+
 }
 
 
