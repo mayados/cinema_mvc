@@ -84,15 +84,23 @@ class CinemaController {
         //On stocke dans une variable $pdo la connection à la base de données
         $pdo = Connect::seConnecter();
         $requeteFilm = $pdo->prepare("
-        SELECT id_film, titre, duree, date_sortie, synopsis,affiche, nom, prenom, nom_role
-        FROM casting
-        LEFT JOIN acteur ON casting.id_acteur = acteur.id_acteur
-        NATURAL JOIN film
-        NATURAL JOIN personne
-        NATURAL JOIN role 
-        WHERE id_film = :id
+            SELECT id_film, titre, duree, date_sortie, synopsis,affiche
+            FROM film
+            WHERE id_film = :id
         ");
         $requeteFilm->execute(["id"=> $id]);
+
+        $requeteCasting = $pdo->prepare("
+            SELECT id_film, titre, duree, date_sortie, synopsis,affiche, nom, prenom, nom_role
+            FROM casting
+            LEFT JOIN acteur ON casting.id_acteur = acteur.id_acteur
+            NATURAL JOIN film
+            NATURAL JOIN personne
+            NATURAL JOIN role 
+            WHERE id_film = :id
+            ");
+
+        $requeteCasting->execute(["id"=> $id]);
 
         // On relie à la vue qui nous intéresse
         require "view/detailFilm.php";
