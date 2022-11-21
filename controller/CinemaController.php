@@ -343,11 +343,12 @@ class CinemaController {
             $duree = filter_input(INPUT_POST, "duree", FILTER_SANITIZE_SPECIAL_CHARS);
             $dateSortie = filter_input(INPUT_POST, "dateSortie",FILTER_SANITIZE_SPECIAL_CHARS); 
             $realisateur = $_POST["realisateur"];
+            $genre = $_POST["genre"];
 
             var_dump($realisateur);
 
              /* Si nous avons tous les champs remplis correctement */
-             if($nom && $duree && $dateSortie && $realisateur){
+             if($nom && $duree && $dateSortie && $realisateur && $genre){
 
                 $pdo = Connect::seConnecter();
 
@@ -358,6 +359,18 @@ class CinemaController {
                 ");
                 /* On execute si l'id entré est bien égal à l'id de la bdd */
                 $requeteFilm->execute();
+
+                /* Le dernier id inséré en bdd correspond à l'id du film, et il nous le faut pour la table "associer" */
+                $last = $pdo->lastInsertId();
+
+                /* On insère l'id du genre correspondant avec l'id du film inséré */
+                $requeteGenre = $pdo->prepare("
+                    INSERT INTO
+                    associer(id_genre,id_film)
+                    VALUES('$genre','$last')
+                ");
+
+                $requeteGenre->execute();
 
                 // On relie à la vue qui nous intéresse
                 require "view/ajoutFilm.php"; 
