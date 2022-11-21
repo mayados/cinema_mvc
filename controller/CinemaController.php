@@ -81,19 +81,19 @@ class CinemaController {
     }
 
     public function detailFilm($id) {
-
         //On stocke dans une variable $pdo la connection à la base de données
         $pdo = Connect::seConnecter();
         $requete = $pdo->prepare("
-            SELECT id_film, titre, duree, date_sortie, synopsis, nom, prenom, nom_role
-            FROM casting
-            LEFT JOIN acteur ON casting.id_acteur = acteur.id_acteur
-            NATURAL JOIN film
-            NATURAL JOIN personne
-            NATURAL JOIN role 
-            WHERE id_film = :id
+        SELECT id_film, titre, duree, date_sortie, synopsis,affiche, nom, prenom, nom_role
+        FROM casting
+        LEFT JOIN acteur ON casting.id_acteur = acteur.id_acteur
+        NATURAL JOIN film
+        NATURAL JOIN personne
+        NATURAL JOIN role 
+        WHERE id_film = :id
         ");
         $requete->execute(["id"=> $id]);
+        var_dump($requete->fetch());die;
 
         // On relie à la vue qui nous intéresse
         require "view/detailFilm.php";
@@ -191,7 +191,7 @@ class CinemaController {
             $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_SPECIAL_CHARS);
             $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_SPECIAL_CHARS);
             $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_SPECIAL_CHARS);
-            $dateNaissance = filter_input(INPUT_POST, "dateNaissance",FILTER_SANITIZE_SPECIAL_CHARS); 
+            $dateNaissance = filter_input(INPUT_POST, "dateNaissance",FILTER_SANITIZE_SPECIAL_CHARS);
 
              /* Si nous avons tous les champs remplis correctement */
              if($nom && $prenom && $sexe && $dateNaissance){
@@ -344,8 +344,9 @@ class CinemaController {
             $dateSortie = filter_input(INPUT_POST, "dateSortie",FILTER_SANITIZE_SPECIAL_CHARS); 
             $realisateur = $_POST["realisateur"];
             $genre = $_POST["genre"];
-
-            var_dump($realisateur);
+            var_dump($genre);die;
+            $synopsis =  filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_SPECIAL_CHARS);
+            $affiche = filter_input(INPUT_POST, "affiche", FILTER_SANITIZE_SPECIAL_CHARS);
 
              /* Si nous avons tous les champs remplis correctement */
              if($nom && $duree && $dateSortie && $realisateur && $genre){
@@ -354,8 +355,8 @@ class CinemaController {
 
                 $requeteFilm = $pdo->prepare("
                     INSERT INTO
-                    film(id_realisateur,titre,duree, date_sortie)
-                    VALUES('$realisateur','$nom','$duree','$dateSortie')
+                    film(id_realisateur,titre,duree, date_sortie, synopsis, affiche)
+                    VALUES('$realisateur','$nom','$duree','$dateSortie','$synopsis','$affiche')
                 ");
                 /* On execute si l'id entré est bien égal à l'id de la bdd */
                 $requeteFilm->execute();
@@ -372,13 +373,14 @@ class CinemaController {
 
                 $requeteGenre->execute();
 
-                // On relie à la vue qui nous intéresse
-                require "view/ajoutFilm.php"; 
+                       // On relie à la vue qui nous intéresse
+                       header('Location: index.php?action=listFilms');
+                       die; 
 
 
             }
         }        
-       
+
     }
 
 
