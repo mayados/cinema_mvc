@@ -5,26 +5,31 @@
     <table>
         <thead>
             <tr>
-                <th>NOM</th>
-                <th>PRENOM</th>
+                <th>ACTEUR</th>
                 <th>ROLE</th>
             </tr>
         </thead>
         <tbody>
             <?php
-                foreach($requete->fetchAll() as $film) { 
+                foreach($requeteFilm->fetchAll() as $film) { 
+                    
                     $titreFilm = $film["titre"];
                     $filmSortie = $film["date_sortie"];
                     $filmDuree = $film["duree"];
+                    $affiche = $film["affiche"];
+                    $synopsis = $film["synopsis"];
                     ?>
-                    <tr>
-                        <td><?=$film["nom"] ?></td>
-                        <td><?=$film["prenom"] ?></td>
+                    <!-- <tr>
+                        <td><?=$film["nom"]." ".$film["prenom"] ?></td>
                         <td><?=$film["nom_role"] ?></td>
-                    </tr>
+                    </tr> -->
             <?php } ?>   
         </tbody>
     </table>
+
+    <img src="<?= $affiche ?>" alt="affiche du film">
+    <h4>synopsis :</h4>
+    <p><?= $synopsis ?></p>
 
     <?php
     
