@@ -81,6 +81,9 @@ class CinemaController {
     }
 
     public function detailFilm($id) {
+
+        /* Ici, on crée 2 requêtes car sinon, lorsque l'on ajoute un film en bdd, ça rentre en collision */
+
         //On stocke dans une variable $pdo la connection à la base de données
         $pdo = Connect::seConnecter();
         $requeteFilm = $pdo->prepare("
@@ -350,38 +353,45 @@ class CinemaController {
             $duree = filter_input(INPUT_POST, "duree", FILTER_SANITIZE_SPECIAL_CHARS);
             $dateSortie = filter_input(INPUT_POST, "dateSortie",FILTER_SANITIZE_SPECIAL_CHARS); 
             $realisateur = $_POST["realisateur"];
-            $genre = $_POST["genre"];
-            var_dump($genre);die;
+            $genres = $_POST["genre"];
+            // var_dump($genres);die;
             $synopsis =  filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_SPECIAL_CHARS);
             $affiche = filter_input(INPUT_POST, "affiche", FILTER_SANITIZE_SPECIAL_CHARS);
 
              /* Si nous avons tous les champs remplis correctement */
-             if($nom && $duree && $dateSortie && $realisateur && $genre){
+             if($nom && $duree && $dateSortie && $realisateur && $genres){
 
                 $pdo = Connect::seConnecter();
 
-                $requeteFilm = $pdo->prepare("
-                    INSERT INTO
-                    film(id_realisateur,titre,duree, date_sortie, synopsis, affiche)
-                    VALUES('$realisateur','$nom','$duree','$dateSortie','$synopsis','$affiche')
-                ");
-                /* On execute si l'id entré est bien égal à l'id de la bdd */
-                $requeteFilm->execute();
+
+                    $requeteFilm = $pdo->prepare("
+                        INSERT INTO
+                        film(id_realisateur,titre,duree, date_sortie, synopsis, affiche)
+                        VALUES('$realisateur','$nom','$duree','$dateSortie','$synopsis','$affiche')
+                    ");
+                    /* On execute si l'id entré est bien égal à l'id de la bdd */
+                    $requeteFilm->execute();                    
+               
+
 
                 /* Le dernier id inséré en bdd correspond à l'id du film, et il nous le faut pour la table "associer" */
                 $last = $pdo->lastInsertId();
-
+                
+                /* Comme plusieurs valeurs sont possibles dans le $_POST['genre'], c'est un tableau. Il faut donc faire un foreach à exécuter pour chaque valeur */
+                foreach($genres as $genre){
                 /* On insère l'id du genre correspondant avec l'id du film inséré */
-                $requeteGenre = $pdo->prepare("
-                    INSERT INTO
-                    associer(id_genre,id_film)
-                    VALUES('$genre','$last')
-                ");
+                    $requeteGenre = $pdo->prepare("
+                        INSERT INTO
+                        associer(id_genre,id_film)
+                        VALUES('$genre','$last')
+                        ");
+                    $requeteGenre->execute();                    
+                 }
 
-                $requeteGenre->execute();
 
-                       // On relie à la vue qui nous intéresse
+                       // Ici on utilise header, car si on utilise require il y a encore les données du serveur et ça entre en conflit. 
                        header('Location: index.php?action=listFilms');
+                       /* Die pour être sûrs que ca ne fait rien d'autre après la redirection = éviter les mauvais comportements */
                        die; 
 
 
