@@ -30,7 +30,9 @@
             case "ajoutActeur" : $ctrlCinema->ajoutActeur(); break; 
             case "insertActeur": $ctrlCinema->insertActeur(); break; 
             case "ajoutRealisateur": $ctrlCinema->ajoutRealisateur(); break; 
-            case "insertRealisateur": $ctrlCinema->insertRealisateur(); break; 
+            case "insertRealisateur": $ctrlCinema->insertRealisateur(); break;
+            case "ajoutGenre": $ctrlCinema->ajoutGenre(); break;  
+            case "insertGenre": $ctrlCinema->insertGenre(); break;  
         }
     }
 
