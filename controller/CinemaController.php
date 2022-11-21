@@ -316,6 +316,25 @@ class CinemaController {
        
     }
 
+    public function ajoutFilm() {
+
+        $pdo = Connect::seConnecter();
+        $requeteRealisateurs = $pdo->query("
+            SELECT nom, prenom, id_realisateur
+            FROM personne 
+            NATURAL JOIN realisateur
+            WHERE id_realisateur IS NOT NULL
+        ");
+
+        $requeteGenres = $pdo->query("
+        SELECT libelle, id_genre
+        FROM genre
+        ");
+
+        // On relie à la vue qui nous intéresse
+        require "view/ajoutFilm.php";
+    }
+
 }
 
 
