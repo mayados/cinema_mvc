@@ -1,4 +1,24 @@
-<?php ob_start(); ?>
+<?php ob_start(); 
+foreach($requeteFilm->fetchAll() as $film) { 
+    
+    $titreFilm = $film["titre"];
+    $filmSortie = $film["date_sortie"];
+    $filmDuree = $film["duree"];
+    $affiche = $film["affiche"];
+    $synopsis = $film["synopsis"];
+}
+
+?>
+
+    <img src="<?= $affiche ?>" alt="affiche du film">
+    <h4>synopsis :</h4>
+    <p><?= $synopsis ?></p>
+
+ 
+<?php 
+    if( $requeteCasting->rowCount() > 0){ 
+    /* On affiche le code HTML / php ci-dessous uniquement s'il y a au moins un casting */        
+?>
 
 <p>Casting du film</p>
 
@@ -11,28 +31,17 @@
         </thead>
         <tbody>
             <?php
-                foreach($requeteFilm->fetchAll() as $film) { 
-                    
-                    $titreFilm = $film["titre"];
-                    $filmSortie = $film["date_sortie"];
-                    $filmDuree = $film["duree"];
-                    $affiche = $film["affiche"];
-                    $synopsis = $film["synopsis"];
-                    ?>
-                    <!-- <tr>
-                        <td><?=$film["nom"]." ".$film["prenom"] ?></td>
-                        <td><?=$film["nom_role"] ?></td>
-                    </tr> -->
+                foreach($requeteCasting->fetchAll() as $casting) { ?>
+                        <td><?=$casting["nom"]." ".$casting["prenom"] ?></td>
+                        <td><?=$casting["nom_role"] ?></td>
             <?php } ?>   
         </tbody>
     </table>
 
-    <img src="<?= $affiche ?>" alt="affiche du film">
-    <h4>synopsis :</h4>
-    <p><?= $synopsis ?></p>
+
 
     <?php
-    
+    }
     /* On stocke dans des variables les titres qui seront affectés sur la page template */
     $titre = "Liste des films";
     $titre_secondaire = "Film : ".$titreFilm." (Durée : ".$filmDuree." / Date de sortie : ".$filmSortie.")";
