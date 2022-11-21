@@ -11,6 +11,12 @@
             <label for="dateSortie">Date de sortie :</label>
                 <input type="text" id="dateSortie" name="dateSortie" placeholder="2022-11-18" required>
 
+            <label for="synopsis">Synopsis :</label>
+                <textarea name="synopsis" id="synopsis" placeholder="Résumé du film" required></textarea>
+
+            <label for="affiche">Affiche :</label>
+                <textarea name="affiche" id="affiche" placeholder="URL de l'affiche" redquired></textarea>
+
             <label for="realisateur">Choisissez un réalisateur:</label>
 
             <select name="realisateur" id="realisateur">
@@ -25,9 +31,9 @@
                 <?php } ?>   
             </select>
 
-            <label for="genre">Choisissez un genre:</label>
+            <label for="genre">Choisissez le(s) genre(s):</label>
 
-            <select name="genre" id="genre">
+            <select  name="genre[]" id="genre" multiple>
                 <?php
                     foreach($requeteGenres->fetchAll() as $genre) { 
                             $libelle = $genre["libelle"];
@@ -41,7 +47,7 @@
 
         </form>
 
-    <?php
+<?php
     
     /* On stocke dans des variables les titres qui seront affectés sur la page template */
     $titre = "Ajouter un film";
@@ -50,3 +56,5 @@
     Ici, nous stockons tout cela dans une variable $contenu */
     $contenu = ob_get_clean();
      require "view/template.php";
+
+?>
