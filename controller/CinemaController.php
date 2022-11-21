@@ -214,10 +214,15 @@ class CinemaController {
                 $requete = $pdo->prepare("
                     INSERT INTO
                     personne(nom,prenom,sexe,date_naissance)
-                    VALUES('$nom','$prenom','$sexe','$dateNaissance')
+                    VALUES(:nom,:prenom,:sexe,:dateNaissance)
                 ");
                 /* On execute si l'id entré est bien égal à l'id de la bdd */
-                $requete->execute();
+                $requete->execute([
+                    'nom'=> $nom,   
+                    'prenom'=> $prenom,
+                    'sexe'=> $sexe,
+                    'dateNaissance'=> $dateNaissance
+                ]);
 
                 /* On stocke le dernier id inséré dans la variable $last */
                 $last = $pdo->lastInsertId();
@@ -225,10 +230,12 @@ class CinemaController {
                  $acteur = $pdo->prepare("
                 INSERT INTO
                 acteur(id_personne)
-                VALUES('$last')
+                VALUES(:last)
                 ");
 
-                $acteur->execute();
+                $acteur->execute([
+                    'last'=> $last
+                ]);
 
                         // On relie à la vue qui nous intéresse
                         require "view/ajoutActeur.php"; 
@@ -265,10 +272,15 @@ class CinemaController {
                 $requete = $pdo->prepare("
                     INSERT INTO
                     personne(nom,prenom,sexe,date_naissance)
-                    VALUES('$nom','$prenom','$sexe','$dateNaissance')
+                    VALUES(:nom,:prenom,:sexe,:dateNaissance)
                 ");
                 /* On execute si l'id entré est bien égal à l'id de la bdd */
-                $requete->execute();
+                $requete->execute([
+                    'nom'=> $nom,
+                    'prenom'=> $prenom,
+                    'sexe'=> $sexe,
+                    'dateNaissance'=> $dateNaissance
+                ]);
 
                 /* On stocke le dernier id inséré dans la variable $last */
                 $last = $pdo->lastInsertId();
@@ -276,10 +288,12 @@ class CinemaController {
                  $realisateur = $pdo->prepare("
                 INSERT INTO
                 realisateur(id_personne)
-                VALUES('$last')
+                VALUES(:last)
                 ");
 
-                $realisateur->execute();
+                $realisateur->execute([
+                    'last'=> $last
+                ]);
 
                         // On relie à la vue qui nous intéresse
                         require "view/ajoutRealisateur.php"; 
@@ -312,10 +326,12 @@ class CinemaController {
                 $requete = $pdo->prepare("
                     INSERT INTO
                     genre(libelle)
-                    VALUES('$nom')
+                    VALUES(:nom)
                 ");
                 /* On execute si l'id entré est bien égal à l'id de la bdd */
-                $requete->execute();
+                $requete->execute([
+                    'nom'=>$nom
+                ]);
 
                 // On relie à la vue qui nous intéresse
                 require "view/ajoutGenre.php"; 
@@ -359,7 +375,7 @@ class CinemaController {
             $affiche = filter_input(INPUT_POST, "affiche", FILTER_SANITIZE_SPECIAL_CHARS);
 
              /* Si nous avons tous les champs remplis correctement */
-             if($nom && $duree && $dateSortie && $realisateur && $genres){
+             if($nom && $duree && $dateSortie && $realisateur && $genres && $synopsis && $affiche){
 
                 $pdo = Connect::seConnecter();
 
@@ -367,10 +383,18 @@ class CinemaController {
                     $requeteFilm = $pdo->prepare("
                         INSERT INTO
                         film(id_realisateur,titre,duree, date_sortie, synopsis, affiche)
-                        VALUES('$realisateur','$nom','$duree','$dateSortie','$synopsis','$affiche')
+                        VALUES(:realisateur,:nom,:duree,:dateSortie,:synopsis,:affiche)
                     ");
-                    /* On execute si l'id entré est bien égal à l'id de la bdd */
-                    $requeteFilm->execute();                    
+                    /* On execute si les valeurs entrées sont bien égal à ce qu'il y a dans la requête préparée */
+                    $requeteFilm->execute(array(
+                        'realisateur'=> $realisateur,
+                        'nom'=> $nom,
+                        'duree'=> $duree,
+                        'dateSortie'=>$dateSortie,
+                        'synopsis'=>$synopsis,
+                        'affiche'=> $affiche
+                    ));       
+                    
                
 
 
@@ -383,9 +407,12 @@ class CinemaController {
                     $requeteGenre = $pdo->prepare("
                         INSERT INTO
                         associer(id_genre,id_film)
-                        VALUES('$genre','$last')
+                        VALUES(:genre,:last)
                         ");
-                    $requeteGenre->execute();                    
+                    $requeteGenre->execute([
+                        'genre'=> $genre,
+                        'last'=> $last
+                    ]);                    
                  }
 
 
