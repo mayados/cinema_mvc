@@ -34,6 +34,7 @@
             case "ajoutGenre": $ctrlCinema->ajoutGenre(); break;  
             case "insertGenre": $ctrlCinema->insertGenre(); break;  
             case "ajoutFilm": $ctrlCinema->ajoutFilm(); break;  
+            case "insertFilm": $ctrlCinema->insertFilm(); break;  
         }
     }
 
