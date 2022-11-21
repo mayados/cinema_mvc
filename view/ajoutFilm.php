@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 
-        <form action="index.php?action=insertGenre" method="post">
+        <form action="index.php?action=insertFilm" method="post">
 
             <label for="nom">Nom du film :</label>
                 <input type="text" id="nom" name="nom" placeholder="exemple : Elephant Man" required>
@@ -11,18 +11,23 @@
             <label for="dateSortie">Date de sortie :</label>
                 <input type="text" id="dateSortie" name="dateSortie" placeholder="2022-11-18" required>
 
-            <label for="realisateur-select">Choisissez un réalisateur:</label>
+            <label for="realisateur">Choisissez un réalisateur:</label>
 
-            <select name="realisateurs" id="realisateur-select">
+            <select name="realisateur" id="realisateur">
                 <?php
-                    foreach($requeteRealisateurs->fetchAll() as $realisateur) { ?>
-                        <option value=""><?=$realisateur["nom"]." ".$realisateur["prenom"] ?></option>
+                    foreach($requeteRealisateurs->fetchAll() as $realisateur) { 
+                             $real = $realisateur["nom"]." ".$realisateur["prenom"];
+                             $realNom = $realisateur["nom"];
+                             $realId = $realisateur["id_realisateur"];
+                        ?>
+
+                        <option value="<?=$realId ?>" name="<?=$realNom ?>"><?=$real ?></option>
                 <?php } ?>   
             </select>
 
-            <label for="genre-select">Choisissez un genre:</label>
+            <label for="genre">Choisissez un genre:</label>
 
-            <select name="genres" id="genre-select">
+            <select name="genre" id="genre">
                 <?php
                     foreach($requeteGenres->fetchAll() as $genre) { ?>
                         <option value=""><?=$genre["libelle"] ?></option>
