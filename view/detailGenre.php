@@ -1,4 +1,9 @@
-<?php ob_start();?>
+<?php ob_start();
+    if($requete->rowCount()== 0){
+        echo "<p>Aucun film ne correspond à ce genre</p>";
+    }else{
+
+?>
 
 <p><?= $requete->rowCount() ?> films correspondent à ce genre</p>
 
@@ -19,7 +24,7 @@
             <?php } ?>   
         </tbody>
     </table>
-
+    <?php } ?>  
     <?php
     
     /* On stocke dans des variables les titres qui seront affectés sur la page template */
