@@ -29,8 +29,11 @@
 
             <select name="genre" id="genre">
                 <?php
-                    foreach($requeteGenres->fetchAll() as $genre) { ?>
-                        <option value=""><?=$genre["libelle"] ?></option>
+                    foreach($requeteGenres->fetchAll() as $genre) { 
+                            $libelle = $genre["libelle"];
+                            $idGenre = $genre["id_genre"];
+                        ?>
+                        <option value="<?= $idGenre ?>" name="<?= $libelle ?>"><?= $libelle ?></option>
                 <?php } ?>   
             </select>
 
