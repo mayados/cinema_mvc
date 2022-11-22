@@ -369,10 +369,10 @@ class CinemaController {
             $duree = filter_input(INPUT_POST, "duree", FILTER_SANITIZE_SPECIAL_CHARS);
             $dateSortie = filter_input(INPUT_POST, "dateSortie",FILTER_SANITIZE_SPECIAL_CHARS); 
             $realisateur = filter_input(INPUT_POST, "realisateur", FILTER_SANITIZE_SPECIAL_CHARS);
-            $genres = $_POST["genre"]; 
+            $genres = filter_var_array($_POST["genre"], FILTER_SANITIZE_SPECIAL_CHARS); 
             // var_dump($genres);die;
             $synopsis =  filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_SPECIAL_CHARS);
-            $affiche = filter_input(INPUT_POST, "affiche", FILTER_SANITIZE_SPECIAL_CHARS);
+            $affiche = filter_input(INPUT_POST, "affiche", FILTER_SANITIZE_URL);
             $note = filter_input(INPUT_POST, "note", FILTER_SANITIZE_SPECIAL_CHARS);
 
              /* Si nous avons tous les champs remplis correctement */
@@ -416,11 +416,11 @@ class CinemaController {
                     ]);               
                  }
 
-
                        // Ici on utilise header, car si on utilise require il y a encore les données du serveur et ça entre en conflit. 
                        header('Location: index.php?action=listFilms');
                        /* Die pour être sûrs que ca ne fait rien d'autre après la redirection = éviter les mauvais comportements */
                        die; 
+
 
 
             }
