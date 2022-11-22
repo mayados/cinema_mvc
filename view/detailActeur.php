@@ -28,6 +28,7 @@
     /* On stocke dans des variables les titres qui seront affectés sur la page template */
     $titre = "informations acteur";
     $titre_secondaire = "Acteur : ".$acteurNom." ".$acteurPrenom." (".$acteurSexe." ".$acteurNaissance.")";
+    $lienCss = "detailActeur";
     /* ob_start et ob_get_clean permettent d'aspirer les informations qui se situent entre ces deux fonctions, ainsi, nous pourrons envoyer tout ça sur une autre page
     Ici, nous stockons tout cela dans une variable $contenu */
     $contenu = ob_get_clean();
