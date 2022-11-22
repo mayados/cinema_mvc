@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 
-<p>Il y a <?= $requete->rowCount() ?> genres</p>
+<p class="compteur">Il y a <?= $requete->rowCount() ?> genres</p>
 
     <table>
         <thead>
@@ -12,7 +12,7 @@
             <?php
                 foreach($requete->fetchAll() as $genre) { ?>
                     <tr>
-                        <td><a href="index.php?action=detailGenre&id=<?= $genre['id_genre']?>"><?=$genre["libelle"] ?></td>
+                        <td ><a class="elements-link" href="index.php?action=detailGenre&id=<?= $genre['id_genre']?>"><?=$genre["libelle"] ?></td>
                     </tr>
             <?php } ?>   
         </tbody>
@@ -23,7 +23,7 @@
     /* On stocke dans des variables les titres qui seront affectés sur la page template */
     $titre = "Liste des genres";
     $titre_secondaire = "Liste des genres";
-    $lienCss = "listGenres";
+    $lienCss = "list";
     /* ob_start et ob_get_clean permettent d'aspirer les informations qui se situent entre ces deux fonctions, ainsi, nous pourrons envoyer tout ça sur une autre page
     Ici, nous stockons tout cela dans une variable $contenu */
     $contenu = ob_get_clean();
