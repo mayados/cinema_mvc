@@ -10,18 +10,26 @@
 <body>
     <nav>
         <a href="index.php?action=listFilms">Films</a>
+        <span>|</span>
         <a href="index.php?action=listRealisateurs">Réalisateurs</a>
+        <span>|</span>
         <a href="index.php?action=listActeurs">Acteurs</a>
+        <span>|</span>
         <a href="index.php?action=listGenres">Genres</a>  
+        <span>|</span>
         <a href="index.php?action=listRoles">Rôles</a> 
-        <a href="index.php?action=ajoutActeur">Ajouter un acteur</a>   
-        <a href="index.php?action=ajoutRealisateur">Ajouter un réalisateur</a>       
-        <a href="index.php?action=ajoutGenre">Ajouter un genre</a>      
+        <span>|</span>
+        <a href="index.php?action=ajoutActeur">Ajouter un acteur</a>
+        <span>|</span>   
+        <a href="index.php?action=ajoutRealisateur">Ajouter un réalisateur</a>   
+        <span>|</span>    
+        <a href="index.php?action=ajoutGenre">Ajouter un genre</a>     
+        <span>|</span> 
         <a href="index.php?action=ajoutFilm">Ajouter un film</a>     
     </nav>
     <div id="container-page">
-            <h2><?= $titre_secondaire ?></h2>
-            <?= $contenu ?>
+        <h2><?= $titre_secondaire ?></h2>
+        <?= $contenu ?>
     </div>
 </body>
 </html>
