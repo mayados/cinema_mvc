@@ -22,7 +22,8 @@
     
     /* On stocke dans des variables les titres qui seront affectés sur la page template */
     $titre = "Ajouter un acteur";
-    $titre_secondaire = "Formulaire : ajouter un acteur";
+    $titre_secondaire = "Ajouter un acteur";
+    $lienCss = "formulaire";
     /* ob_start et ob_get_clean permettent d'aspirer les informations qui se situent entre ces deux fonctions, ainsi, nous pourrons envoyer tout ça sur une autre page
     Ici, nous stockons tout cela dans une variable $contenu */
     $contenu = ob_get_clean();
