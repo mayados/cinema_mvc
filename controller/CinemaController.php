@@ -87,7 +87,7 @@ class CinemaController {
         //On stocke dans une variable $pdo la connection à la base de données
         $pdo = Connect::seConnecter();
         $requeteFilm = $pdo->prepare("
-            SELECT id_film, titre, duree, date_sortie, synopsis,affiche
+            SELECT id_film, titre, duree, date_sortie, synopsis,affiche,note
             FROM film
             WHERE id_film = :id
         ");
@@ -368,22 +368,23 @@ class CinemaController {
             $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_SPECIAL_CHARS);
             $duree = filter_input(INPUT_POST, "duree", FILTER_SANITIZE_SPECIAL_CHARS);
             $dateSortie = filter_input(INPUT_POST, "dateSortie",FILTER_SANITIZE_SPECIAL_CHARS); 
-            $realisateur = $_POST["realisateur"];
-            $genres = $_POST["genre"];
+            $realisateur = filter_input(INPUT_POST, "realisateur", FILTER_SANITIZE_SPECIAL_CHARS);
+            $genres = $_POST["genre"]; 
             // var_dump($genres);die;
             $synopsis =  filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_SPECIAL_CHARS);
             $affiche = filter_input(INPUT_POST, "affiche", FILTER_SANITIZE_SPECIAL_CHARS);
+            $note = filter_input(INPUT_POST, "note", FILTER_SANITIZE_SPECIAL_CHARS);
 
              /* Si nous avons tous les champs remplis correctement */
-             if($nom && $duree && $dateSortie && $realisateur && $genres && $synopsis && $affiche){
+             if($nom && $duree && $dateSortie && $realisateur && $genres && $synopsis && $affiche && $note){
 
                 $pdo = Connect::seConnecter();
 
 
                     $requeteFilm = $pdo->prepare("
                         INSERT INTO
-                        film(id_realisateur,titre,duree, date_sortie, synopsis, affiche)
-                        VALUES(:realisateur,:nom,:duree,:dateSortie,:synopsis,:affiche)
+                        film(id_realisateur,titre,duree, date_sortie, synopsis,note, affiche)
+                        VALUES(:realisateur,:nom,:duree,:dateSortie,:synopsis,:note,:affiche)
                     ");
                     /* On execute si les valeurs entrées sont bien égal à ce qu'il y a dans la requête préparée */
                     $requeteFilm->execute(array(
@@ -392,10 +393,10 @@ class CinemaController {
                         'duree'=> $duree,
                         'dateSortie'=>$dateSortie,
                         'synopsis'=>$synopsis,
+                        'note'=>$note,
                         'affiche'=> $affiche
                     ));       
                     
-               
 
 
                 /* Le dernier id inséré en bdd correspond à l'id du film, et il nous le faut pour la table "associer" */
@@ -410,9 +411,9 @@ class CinemaController {
                         VALUES(:genre,:last)
                         ");
                     $requeteGenre->execute([
-                        'genre'=> $genre,
-                        'last'=> $last
-                    ]);                    
+                        'genre'=>$genre,
+                        'last'=>$last
+                    ]);               
                  }
 
 
