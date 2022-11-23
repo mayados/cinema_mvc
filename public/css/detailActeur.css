@@ -27,6 +27,10 @@ nav{
     border-bottom: 1px solid rgb(74, 128, 179);
 }
 
+.nav-link:hover{
+    border-bottom: 3px solid rgb(74, 128, 179);
+}
+
 #container-page{
     background-color: #1d1b1b;
     min-height: 93vh;
