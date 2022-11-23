@@ -20,11 +20,11 @@ nav{
     padding-left: 40px;
     padding-right: 40px;
     font-size: 1.2rem;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid rgb(74, 128, 179);
 }
 
 #container-page{
-    background-color: #edd8c6;
+    background-color: #1d1b1b;
     min-height: 93vh;
     display: flex;
     flex-direction: column;
@@ -33,6 +33,24 @@ nav{
 
 h2{
     padding: 50px;
+    color : rgb(73, 136, 185);
+}
+
+#retour{
+    padding: 10px 0px 30px 0;
+}
+
+#retour a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 400px;
+}
+
+#retour a i{
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0,0.7);
 }
 
 #container-infos{
@@ -44,7 +62,7 @@ h2{
 }
 
 #synopsis{
-    background-color: rgb(255, 255, 255, 0.5);
+    background-color: rgb(255, 255, 255);
     border-radius: 10px;
     width: 500px;
     min-height: 400px;
@@ -71,6 +89,7 @@ h2{
 }
 
 #infos-film{
+    color: white;
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -80,15 +99,17 @@ h2{
 }
 
 #container-casting{
-    background-color: rgb(0, 0, 0,0.5);
+    background-color : rgb(73, 136, 185);
     border-radius: 100px;
     width: 400px;
+    min-height: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 30px;
+    gap: 10px;
     color: white;
+    padding-bottom: 10px;
 }
 
 #container-casting h4{
@@ -96,18 +117,12 @@ h2{
     padding-top: 20px;
 }
 
-table{
-    width: 400px;
-    padding: 10px;
+#container-casting ul{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-th{
-    height: 40px;
-    font-size: 0.9rem;
-}
-
-td{
-    padding: 10px;
-    text-align: center;
-    font-size: 1.1rem;
+#container-casting li{
+    list-style: none;
 }

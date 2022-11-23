@@ -15,15 +15,16 @@ nav{
     justify-content: space-between;
     align-items: center;
     gap: 5px;
-    background-color: #9b362a;
+    background-color: black;
     height: 7vh;
     padding-left: 40px;
     padding-right: 40px;
     font-size: 1.2rem;
+    border-bottom: 1px solid rgb(74, 128, 179);
 }
 
 #container-page{
-    background-color: #edd8c6;
+    background-color: #1d1b1b;
     min-height: 93vh;
     display: flex;
     flex-direction: column;
@@ -32,17 +33,19 @@ nav{
 
 h2{
     padding: 50px;
+    color: white;
 }
 
 form{
     display: flex;
     flex-direction: column;
     gap: 20px;
-    background-color: rgb(155, 54, 42, 0.7);
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    width: 400px;
+    background-color: rgb(74, 128, 179);
+    box-shadow: rgba(81, 97, 195, 0.3) 0px 19px 38px, rgba(67, 104, 208, 0.22) 0px 15px 12px;
+    width: 600px;
     padding: 10px;
     border-radius: 10px;
+    color: white;
 }
 
 form .form-champ{
