@@ -202,9 +202,10 @@ class CinemaController {
             $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_SPECIAL_CHARS);
             $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_SPECIAL_CHARS);
             $dateNaissance = filter_input(INPUT_POST, "dateNaissance",FILTER_SANITIZE_SPECIAL_CHARS);
+            $photo = filter_input(INPUT_POST, "photo",FILTER_SANITIZE_SPECIAL_CHARS);
 
              /* Si nous avons tous les champs remplis correctement */
-             if($nom && $prenom && $sexe && $dateNaissance){
+             if($nom && $prenom && $sexe && $dateNaissance && $photo){
                 /* Si toutes les vérifications sont correctes, on peut executer */
                 
                 //On stocke dans une variable $pdo la connection à la base de données
@@ -213,15 +214,16 @@ class CinemaController {
                 /* D'abord on fait la requête pour ajouter une personne, car un acteur est tout d'abord une personne */
                 $requete = $pdo->prepare("
                     INSERT INTO
-                    personne(nom,prenom,sexe,date_naissance)
-                    VALUES(:nom,:prenom,:sexe,:dateNaissance)
+                    personne(nom,prenom,sexe,date_naissance,photo)
+                    VALUES(:nom,:prenom,:sexe,:dateNaissance,:photo)
                 ");
                 /* On execute si l'id entré est bien égal à l'id de la bdd */
                 $requete->execute([
                     'nom'=> $nom,   
                     'prenom'=> $prenom,
                     'sexe'=> $sexe,
-                    'dateNaissance'=> $dateNaissance
+                    'dateNaissance'=> $dateNaissance,
+                    'photo'=> $photo
                 ]);
 
                 /* On stocke le dernier id inséré dans la variable $last */
@@ -261,9 +263,9 @@ class CinemaController {
             $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_SPECIAL_CHARS);
             $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_SPECIAL_CHARS);
             $dateNaissance = filter_input(INPUT_POST, "dateNaissance",FILTER_SANITIZE_SPECIAL_CHARS); 
-
+            $photo = filter_input(INPUT_POST, "dateNaissance",FILTER_SANITIZE_SPECIAL_CHARS);
              /* Si nous avons tous les champs remplis correctement */
-             if($nom && $prenom && $sexe && $dateNaissance){
+             if($nom && $prenom && $sexe && $dateNaissance && $photo){
                 /* Si toutes les vérifications sont correctes, on peut executer */
                 
                 //On stocke dans une variable $pdo la connection à la base de données
@@ -272,15 +274,16 @@ class CinemaController {
                 /* D'abord on fait la requête pour ajouter une personne, car un acteur est tout d'abord une personne */
                 $requete = $pdo->prepare("
                     INSERT INTO
-                    personne(nom,prenom,sexe,date_naissance)
-                    VALUES(:nom,:prenom,:sexe,:dateNaissance)
+                    personne(nom,prenom,sexe,date_naissance,photo)
+                    VALUES(:nom,:prenom,:sexe,:dateNaissance,:photo)
                 ");
                 /* On execute si l'id entré est bien égal à l'id de la bdd */
                 $requete->execute([
                     'nom'=> $nom,
                     'prenom'=> $prenom,
                     'sexe'=> $sexe,
-                    'dateNaissance'=> $dateNaissance
+                    'dateNaissance'=> $dateNaissance,
+                    'photo'=> $photo
                 ]);
 
                 /* On stocke le dernier id inséré dans la variable $last */
