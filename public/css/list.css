@@ -18,10 +18,14 @@ a,span{
     font-weight: bold;
 }
 
-nav{
+li{
+    list-style-type: none;    
+}
+
+nav #items-menu{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     gap: 5px;
     background-color: black;
@@ -35,6 +39,31 @@ nav{
     left: 0;
     z-index: 1;
     width: 100%;
+}
+
+#sous-menu {
+    position: absolute;
+    top: 4.5vh;
+    right: 10px;
+    display: none;
+    background-color: rgb(0, 0, 0);
+    width: 200px;
+}
+
+#sous-menu li{
+    padding:20px 10px 10px 10px;
+}
+
+#admin{
+    text-align: center;
+}
+
+#admin:hover #sous-menu{
+    display: block;
+} 
+
+#sous-menu li:hover{
+    background-color: rgb(74, 128, 179);
 }
 
 #container-page{

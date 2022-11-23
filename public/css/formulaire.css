@@ -9,10 +9,14 @@ a,span{
     color: white;
 }
 
-nav{
+li{
+    list-style-type: none;    
+}
+
+nav #items-menu{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     gap: 5px;
     background-color: black;
@@ -21,6 +25,36 @@ nav{
     padding-right: 40px;
     font-size: 1.2rem;
     border-bottom: 1px solid rgb(74, 128, 179);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+}
+
+#sous-menu {
+    position: absolute;
+    top: 4.5vh;
+    right: 10px;
+    display: none;
+    background-color: rgb(0, 0, 0);
+    width: 200px;
+}
+
+#sous-menu li{
+    padding:20px 10px 10px 10px;
+}
+
+#admin{
+    text-align: center;
+}
+
+#admin:hover #sous-menu{
+    display: block;
+} 
+
+#sous-menu li:hover{
+    background-color: rgb(74, 128, 179);
 }
 
 .nav-link:hover{
@@ -28,6 +62,7 @@ nav{
 }
 
 #container-page{
+    margin-top: 7vh;
     background-color: #1d1b1b;
     min-height: 93vh;
     display: flex;
