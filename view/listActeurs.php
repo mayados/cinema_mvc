@@ -5,7 +5,15 @@
     <div class="container-elements">
         <?php
             foreach($requete->fetchAll() as $acteur) { ?>
-                    <div class="elements"><a class="elements-link" href="index.php?action=detailActeur&id=<?= $acteur['id_acteur']?>"><?=$acteur["nom"] ?> <?=$acteur["prenom"] ?></div>
+
+                        <a class="elements-link" href="index.php?action=detailActeur&id=<?= $acteur['id_acteur']?>">
+                            <div class="elements">                        
+                                 <p><?=$acteur["prenom"] ?> <?=$acteur["nom"] ?></p>
+                            </div>
+                            <div class="container-img">
+                                <img src="<?= $acteur["photo"] ?>" alt="">
+                            </div>
+                        </a>
         <?php } ?>          
     </div>
      
