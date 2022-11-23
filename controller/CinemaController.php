@@ -15,7 +15,7 @@ class CinemaController {
         $pdo = Connect::seConnecter();
         //On stocke dans une variable $requete la connexion à la base de données à laquelle on envoie une requête , ici on demande le titre du film et sa date de sortie
         $requete = $pdo->query("
-            SELECT titre, date_sortie, id_film
+            SELECT titre, date_sortie, id_film, note,nombreLike, affiche
             FROM film
         ");
 
@@ -29,7 +29,7 @@ class CinemaController {
         //On stocke dans une variable $pdo la connection à la base de données
         $pdo = Connect::seConnecter();
         $requete = $pdo->query("
-            SELECT nom, prenom, id_realisateur
+            SELECT nom, prenom,photo, id_realisateur
             FROM personne 
             NATURAL JOIN realisateur
             WHERE id_realisateur IS NOT NULL
@@ -44,7 +44,7 @@ class CinemaController {
         //On stocke dans une variable $pdo la connection à la base de données
         $pdo = Connect::seConnecter();
         $requete = $pdo->query("
-            SELECT nom, prenom, id_acteur
+            SELECT nom, prenom,photo, id_acteur
             FROM personne 
             NATURAL JOIN acteur
             WHERE id_acteur IS NOT NULL
