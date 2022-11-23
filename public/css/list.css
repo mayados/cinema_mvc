@@ -10,7 +10,8 @@ a,span{
 }
 
 .elements-link{
-    color: black;
+    color: white;
+    font-weight: bold;
 }
 
 nav{
@@ -29,6 +30,7 @@ nav{
 
 #container-page{
     background-color: #151414;
+    width: 100%;
     min-height: 93vh;
     display: flex;
     flex-direction: column;
@@ -49,25 +51,40 @@ p{
     font-size: 1.4rem;
 }
 
-table{
-    border: 1px solid black;
-    background-color: whitesmoke;
-    width: 400px;
+.container-elements{
+    width: 80%;
+    min-height: 500px;
+    display: flex;
+    justify-content: space-around;
     padding: 10px;
+    flex-wrap: wrap; 
+    gap: 20px;   
+
 }
 
-thead{
-    background-color: gray;
+.elements{
+  padding: 15px;
+  background-color: rgb(74, 128, 179);
+  border-radius: 100px;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    transition: 1s;  
 }
 
-th{
-    height: 40px;
-    font-size: 1.2rem;
+
+.elements:hover{
+    transform: scale(1.1);
 }
 
-td{
-    border: 1px solid black;
-    padding: 10px;
-    font-size: 1.1rem;
+a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    text-align: justify;
     text-align: center;
 }
