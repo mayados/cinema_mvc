@@ -7,7 +7,7 @@
     <div id="retour">
         <a href="index.php?action=listGenres">
             <i class="fa-solid fa-circle-left"></i>
-            <p>Retourner en arrière</p>
+            <p>Retour</p>
         </a>        
     </div>
     <p id="compteur"><?= $requete->rowCount() ?> film(s)</p>

@@ -5,7 +5,7 @@
         <div id="retour">
             <a href="index.php?action=listRealisateurs">
                 <i class="fa-solid fa-circle-left"></i>
-                <p>Retourner en arrière</p>
+                <p>Retour</p>
             </a>  
         </div>
 
