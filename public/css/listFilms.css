@@ -30,9 +30,15 @@ nav{
     padding-right: 40px;
     font-size: 1.2rem;
     border-bottom: 1px solid rgb(74, 128, 179);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
 }
 
 #container-page{
+    margin-top: 7vh;
     background-color: #151414;
     width: 100%;
     min-height: 93vh;
