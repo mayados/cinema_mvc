@@ -27,6 +27,10 @@
         <a class="nav-link" href="index.php?action=ajoutGenre">Ajouter un genre</a>     
         <span>|</span> 
         <a class="nav-link" href="index.php?action=ajoutFilm">Ajouter un film</a>     
+        <span>|</span> 
+        <a class="nav-link" href="index.php?action=ajoutRole">Ajouter un rôle</a>   
+        <span>|</span> 
+        <a class="nav-link" href="index.php?action=ajoutCasting">Ajouter un Casting</a>       
     </nav>
     <div id="container-page">
         <h2><?= $titre_secondaire ?></h2>
