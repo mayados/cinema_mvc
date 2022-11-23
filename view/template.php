@@ -10,23 +10,23 @@
 </head>
 <body>
     <nav>
-        <a href="index.php?action=listFilms">Films</a>
+        <a class="nav-link" href="index.php?action=listFilms">Films</a>
         <span>|</span>
-        <a href="index.php?action=listRealisateurs">Réalisateurs</a>
+        <a class="nav-link" href="index.php?action=listRealisateurs">Réalisateurs</a>
         <span>|</span>
-        <a href="index.php?action=listActeurs">Acteurs</a>
+        <a class="nav-link" href="index.php?action=listActeurs">Acteurs</a>
         <span>|</span>
-        <a href="index.php?action=listGenres">Genres</a>  
+        <a class="nav-link" href="index.php?action=listGenres">Genres</a>  
         <span>|</span>
-        <a href="index.php?action=listRoles">Rôles</a> 
+        <a class="nav-link" href="index.php?action=listRoles">Rôles</a> 
         <span>|</span>
-        <a href="index.php?action=ajoutActeur">Ajouter un acteur</a>
+        <a class="nav-link" href="index.php?action=ajoutActeur">Ajouter un acteur</a>
         <span>|</span>   
-        <a href="index.php?action=ajoutRealisateur">Ajouter un réalisateur</a>   
+        <a class="nav-link" href="index.php?action=ajoutRealisateur">Ajouter un réalisateur</a>   
         <span>|</span>    
-        <a href="index.php?action=ajoutGenre">Ajouter un genre</a>     
+        <a class="nav-link" href="index.php?action=ajoutGenre">Ajouter un genre</a>     
         <span>|</span> 
-        <a href="index.php?action=ajoutFilm">Ajouter un film</a>     
+        <a class="nav-link" href="index.php?action=ajoutFilm">Ajouter un film</a>     
     </nav>
     <div id="container-page">
         <h2><?= $titre_secondaire ?></h2>
