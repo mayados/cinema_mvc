@@ -14,6 +14,9 @@
             <label for="dateNaissance">Date de naissance :</label>
             <input type="text" id="dateNaissance" name="dateNaissance" placeholder="2022-11-18" required>
 
+                <label for="photo">Photo :</label>
+                    <textarea name="photo" id="photo" placeholder="URL de la photo" redquired></textarea>                
+
             <input name="submit" type="submit" value="Envoyer">
 
         </form>
