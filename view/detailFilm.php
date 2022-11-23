@@ -23,7 +23,10 @@ foreach($requeteFilm->fetchAll() as $film) {
                 <h4>Synopsis :</h4>           
                 <p><?= $synopsis ?></p>        
             </div>    
-        <img src="<?= $affiche ?>" alt="affiche du film">          
+            <div id="affiche">
+                 <img src="<?= $affiche ?>" alt="affiche du film">                   
+            </div>
+       
     </div>
 
     <div id="container-bottom">
@@ -33,7 +36,8 @@ foreach($requeteFilm->fetchAll() as $film) {
                 <p><i class="fa-solid fa-star"></i> <?= $note ?> /5</p>
                 <a href="index.php?action=liker&id=<?= $filmId?>"><i class="fa-regular fa-thumbs-up"></i></a>
                 <p><?= $nombreLike ?> j'aime</p>
-            </div> 
+        </div> 
+        <div id="bar"></div>
         <div id="container-casting">
             <?php 
                 if( $requeteCasting->rowCount() > 0){ 
@@ -41,14 +45,19 @@ foreach($requeteFilm->fetchAll() as $film) {
             ?>
 
             <h4>Casting</h4>
-
-            <ul>
+            <div class="casting-members">
                 <?php
                     foreach($requeteCasting->fetchAll() as $casting) { ?>
-                            <li><?=$casting["prenom"]." ".$casting["nom"] ?> dans le rôle de <?=$casting["nom_role"] ?></li>
-                             <td></td>
-                <?php } ?>                   
-            </ul>           
+                        <div class="casting-member">
+                            <p><?=$casting["prenom"]." ".$casting["nom"] ?></p>
+                            <div class="member-photo">
+                                <img src="<?= $casting["photo"] ?>" alt="">
+                            </div> 
+                            <p><?=$casting["nom_role"] ?></p>                           
+                        </div>
+                <?php } ?>                    
+            </div>
+                   
         </div>
     </div>
     <?php
