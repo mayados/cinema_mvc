@@ -87,7 +87,7 @@ class CinemaController {
         //On stocke dans une variable $pdo la connection à la base de données
         $pdo = Connect::seConnecter();
         $requeteFilm = $pdo->prepare("
-            SELECT id_film, titre, duree, date_sortie, synopsis,affiche,note
+            SELECT id_film, titre, duree, date_sortie, synopsis,affiche,note, nombreLike
             FROM film
             WHERE id_film = :id
         ");
@@ -238,7 +238,8 @@ class CinemaController {
                 ]);
 
                         // On relie à la vue qui nous intéresse
-                        require "view/ajoutActeur.php"; 
+                        header('Location: index.php?action=listActeurs');
+                        die;
 
 
             }
@@ -296,7 +297,8 @@ class CinemaController {
                 ]);
 
                         // On relie à la vue qui nous intéresse
-                        require "view/ajoutRealisateur.php"; 
+                        header('Location: index.php?action=listRealisateurs');
+                        die;
 
 
             }
@@ -334,7 +336,8 @@ class CinemaController {
                 ]);
 
                 // On relie à la vue qui nous intéresse
-                require "view/ajoutGenre.php"; 
+                header('Location: index.php?action=listGenres');
+                die; 
 
 
             }
@@ -420,14 +423,128 @@ class CinemaController {
                        header('Location: index.php?action=listFilms');
                        /* Die pour être sûrs que ca ne fait rien d'autre après la redirection = éviter les mauvais comportements */
                        die; 
-
-
-
             }
         }        
 
     }
 
+    public function ajoutRole() {
+        // On relie à la vue qui nous intéresse
+        require "view/ajoutRole.php";
+    }
+
+    public function insertRole(){
+        /* On verifie que cela a bien été soumis via le formulaire */
+        if(isset($_POST['submit'])){
+            /* On filtre les input et textarea pour ne pas qu'il y ait des failles allant contre la sécurité */
+            $role = filter_input(INPUT_POST, "role", FILTER_SANITIZE_SPECIAL_CHARS);
+
+             /* Si nous avons tous les champs remplis correctement */
+             if($role){
+                /* Si toutes les vérifications sont correctes, on peut executer */
+                
+                //On stocke dans une variable $pdo la connection à la base de données
+                $pdo = Connect::seConnecter();
+                /* Les éléments en paramètres sont des éléments saisis par un utilisateur, il faut donc prepare() pour s'assurer que ce qui est entré en paramètres correspond bien à ce qu'on nous demande */
+                /* D'abord on fait la requête pour ajouter une personne, car un acteur est tout d'abord une personne */
+                $requete = $pdo->prepare("
+                    INSERT INTO
+                    role(nom_role)
+                    VALUES(:role)
+                ");
+                /* On execute si l'id entré est bien égal à l'id de la bdd */
+                $requete->execute([
+                    'role'=>$role
+                ]);
+
+                // On relie à la vue qui nous intéresse
+                header('Location: index.php?action=listRoles'); 
+                die;
+
+
+            }
+        }        
+       
+    }
+
+    public function ajoutCasting() {
+
+        $pdo = Connect::seConnecter();
+        /* Tout d'abord, on souhaite afficher tous les éléments présents en base de données (films, acteurs, rôles) */
+        $requeteFilms = $pdo->query("
+            SELECT titre, id_film
+            FROM film
+        ");
+
+        $requeteActeurs = $pdo->query("
+            SELECT nom, prenom, id_acteur
+            FROM personne 
+            NATURAL JOIN acteur
+            WHERE id_acteur IS NOT NULL
+        ");
+
+        $requeteRoles = $pdo->query("
+            SELECT nom_role, id_role
+            FROM role 
+        ");
+
+        // On relie à la vue qui nous intéresse
+        require "view/ajoutCasting.php";
+    }
+
+    public function insertCasting(){
+        /* On verifie que cela a bien été soumis via le formulaire */
+        if(isset($_POST['submit'])){
+            /* On filtre les input et textarea pour ne pas qu'il y ait des failles allant contre la sécurité */
+            $film = filter_input(INPUT_POST, "film", FILTER_SANITIZE_SPECIAL_CHARS);
+            $acteur = filter_input(INPUT_POST, "acteur", FILTER_SANITIZE_SPECIAL_CHARS);
+            $role = filter_input(INPUT_POST, "role",FILTER_SANITIZE_SPECIAL_CHARS); 
+
+
+             /* Si nous avons tous les champs remplis correctement */
+             if($film && $acteur && $role){
+
+                $pdo = Connect::seConnecter();
+
+
+                    $requeteCasting = $pdo->prepare("
+                        INSERT INTO
+                        casting(id_film,id_role,id_acteur)
+                        VALUES(:film,:role,:acteur)
+                    ");
+                    /* On execute si les valeurs entrées sont bien égal à ce qu'il y a dans la requête préparée */
+                    $requeteCasting->execute(array(
+                        'film'=> $film,
+                        'role'=> $role,
+                        'acteur'=> $acteur,
+                    ));       
+
+                       // Ici on utilise header, car si on utilise require il y a encore les données du serveur et ça entre en conflit. 
+                       header('Location: index.php?action=listFilms');
+                       /* Die pour être sûrs que ca ne fait rien d'autre après la redirection = éviter les mauvais comportements */
+                       die; 
+            }
+        }        
+
+    }
+
+    /* Fonction appelée dès que l'on ajoute un like */
+    public function liker($id) {
+
+        $pdo = Connect::seConnecter();
+        /* On incrémente la valeur de 1 en base de données dès que la fonction est appelée */
+        $requeteLike = $pdo->query("
+            UPDATE film 
+            SET nombreLike=nombreLike+1
+            WHERE id_film = $id 
+        ");
+
+        
+
+        header('Location: index.php?action=detailFilm&id='.$id.'');
+        /* Die pour être sûrs que ca ne fait rien d'autre après la redirection = éviter les mauvais comportements */
+        die; 
+    }
 
 }
 
