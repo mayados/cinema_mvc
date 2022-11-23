@@ -15,7 +15,7 @@ foreach($requeteFilm->fetchAll() as $film) {
     <div id="retour">
         <a href="index.php?action=listFilms">
             <i class="fa-solid fa-circle-left"></i>
-            <p>Retourner en arrière</p>
+            <p>Retour</p>
         </a>  
     </div>
     <div id="container-infos">
@@ -30,7 +30,7 @@ foreach($requeteFilm->fetchAll() as $film) {
         <div id="infos-film">
                 <p>Durée : <?= $filmDuree ?></p>
                 <p>Date de sortie : <?= $filmSortie?></p>
-                <p>Note : <?= $note ?> /5</p>
+                <p><i class="fa-solid fa-star"></i> <?= $note ?> /5</p>
                 <a href="index.php?action=liker&id=<?= $filmId?>"><i class="fa-regular fa-thumbs-up"></i></a>
                 <p><?= $nombreLike ?> j'aime</p>
             </div> 
@@ -54,7 +54,7 @@ foreach($requeteFilm->fetchAll() as $film) {
     <?php
     }
     /* On stocke dans des variables les titres qui seront affectés sur la page template */
-    $titre = "Liste des films";
+    $titre = $titreFilm;
     $titre_secondaire = $titreFilm;
     $lienCss = "detailFilm";
     /* ob_start et ob_get_clean permettent d'aspirer les informations qui se situent entre ces deux fonctions, ainsi, nous pourrons envoyer tout ça sur une autre page
