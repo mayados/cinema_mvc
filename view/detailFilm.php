@@ -7,6 +7,8 @@ foreach($requeteFilm->fetchAll() as $film) {
     $affiche = $film["affiche"];
     $synopsis = $film["synopsis"];
     $note = $film["note"];
+    $filmId = $film["id_film"];
+    $nombreLike = $film["nombreLike"];
 }
 
 ?>
@@ -29,6 +31,8 @@ foreach($requeteFilm->fetchAll() as $film) {
                 <p>Durée : <?= $filmDuree ?></p>
                 <p>Date de sortie : <?= $filmSortie?></p>
                 <p>Note : <?= $note ?> /5</p>
+                <a href="index.php?action=liker&id=<?= $filmId?>"><i class="fa-regular fa-thumbs-up"></i></a>
+                <p><?= $nombreLike ?> j'aime</p>
             </div> 
         <div id="container-casting">
             <?php 
