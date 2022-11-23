@@ -19,15 +19,16 @@ nav{
     justify-content: space-between;
     align-items: center;
     gap: 5px;
-    background-color: #9b362a;
+    background-color: black;
     height: 7vh;
     padding-left: 40px;
     padding-right: 40px;
     font-size: 1.2rem;
+    border-bottom: 1px solid rgb(74, 128, 179);
 }
 
 #container-page{
-    background-color: #edd8c6;
+    background-color: #151414;
     min-height: 93vh;
     display: flex;
     flex-direction: column;
@@ -36,6 +37,11 @@ nav{
 
 h2{
     padding: 50px;
+    color: rgb(255, 255, 255);
+}
+
+p{
+    color: white;
 }
 
 .compteur{
