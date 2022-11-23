@@ -2,23 +2,20 @@
 
 <p class="compteur">Il y a <?= $requete->rowCount() ?> realisateurs</p>
 
-    <table>
-        <thead>
-            <tr>
-                <th>NOM</th>
-                <th>PRENOM</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                foreach($requete->fetchAll() as $realisateur) { ?>
-                    <tr>
-                        <td><a class="elements-link" href="index.php?action=detailRealisateur&id=<?= $realisateur['id_realisateur']?>"><?=$realisateur["nom"] ?></td>
-                        <td><?=$realisateur["prenom"] ?></td>
-                    </tr>
-            <?php } ?>   
-        </tbody>
-    </table>
+    <div class="container-elements">
+         <?php
+            foreach($requete->fetchAll() as $realisateur) { ?>
+                    <div class="elements">
+                        <a class="elements-link" href="index.php?action=detailRealisateur&id=<?= $realisateur['id_realisateur']?>">
+                         <p><?=$realisateur["prenom"] ?></p>
+                         <p><?=$realisateur["nom"] ?></p>
+                        </a>
+                    </div>
+
+        <?php } ?>           
+    </div>
+
+
 
     <?php
     

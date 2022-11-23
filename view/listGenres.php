@@ -2,21 +2,16 @@
 
 <p class="compteur">Il y a <?= $requete->rowCount() ?> genres</p>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Libellé du genre</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                foreach($requete->fetchAll() as $genre) { ?>
-                    <tr>
-                        <td ><a class="elements-link" href="index.php?action=detailGenre&id=<?= $genre['id_genre']?>"><?=$genre["libelle"] ?></td>
-                    </tr>
-            <?php } ?>   
-        </tbody>
-    </table>
+    <div class="container-elements">
+        <?php
+            foreach($requete->fetchAll() as $genre) { ?>
+                    <div class="elements">
+                        <a class="elements-link" href="index.php?action=detailGenre&id=<?= $genre['id_genre']?>">
+                            <p><?=$genre["libelle"] ?></p>
+                        </a> 
+                     </div>
+        <?php } ?>           
+    </div>
 
     <?php
     

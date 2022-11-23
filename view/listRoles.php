@@ -2,21 +2,17 @@
 
 <p class="compteur" >Il y a <?= $requete->rowCount() ?> roles</p>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Nom du rôle</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                foreach($requete->fetchAll() as $role) { ?>
-                    <tr>
-                        <td><a class="elements-link" href="index.php?action=detailRole&id=<?= $role['id_role']?>"><?=$role["nom_role"] ?></td>
-                    </tr>
-            <?php } ?>   
-        </tbody>
-    </table>
+    <div class="container-elements">
+        <?php
+            foreach($requete->fetchAll() as $role) { ?>
+                    <div class="elements">
+                        <a class="elements-link" href="index.php?action=detailRole&id=<?= $role['id_role']?>">
+                            <p><?=$role["nom_role"] ?></p>
+                        </a>
+                     </div>
+        <?php } ?>          
+    </div>
+ 
 
     <?php
     

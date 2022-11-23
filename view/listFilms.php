@@ -2,24 +2,17 @@
 
 <p class="compteur">Il y a <?= $requete->rowCount() ?> films</p>
 
-    <table>
-        <thead>
-            <tr>
-                <th>TITRE</th>
-                <th>DATE DE SORTIE</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                foreach($requete->fetchAll() as $film) { ?>
-                    <tr>
-                        
-                        <td><a class='elements-link' href="index.php?action=detailFilm&id=<?= $film['id_film']?>"><?=$film["titre"] ?></a></td>
-                        <td><?=$film["date_sortie"] ?></td>
-                    </tr>
-            <?php } ?>   
-        </tbody>
-    </table>
+    <div class="container-elements">
+        <?php
+            foreach($requete->fetchAll() as $film) { ?>
+                    <div class="elements">
+                        <a class='elements-link' href="index.php?action=detailFilm&id=<?= $film['id_film']?>">
+                            <p><?=$film["titre"] ?></p>
+                            <p><?=$film["date_sortie"] ?></p>
+                        </a>
+                    </div>
+        <?php } ?>           
+    </div>
 
     <?php
     
