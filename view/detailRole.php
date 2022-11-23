@@ -1,33 +1,29 @@
 <?php ob_start();?>
 
-<p>Ce personnage a été incarné par <?= $requete->rowCount() ?> acteurs</p>
+        <div id="retour">
+                <a href="index.php?action=listRoles">
+                    <i class="fa-solid fa-circle-left"></i>
+                    <p>Retourner en arrière</p>
+                </a>  
+        </div>
+        <p id="compteur">Ce personnage a été incarné par <?= $requete->rowCount() ?> acteur(s)</p>
 
-    <table>
-        <thead>
-            <tr>
-                <th>FILM</th>
-                <th>Acteur</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                foreach($requete->fetchAll() as $role) { 
-                    $nomRole = $role["nom_role"];
-                    ?>
-                    <tr>
-                        <td><?=$role["titre"] ?></td>
-                        <td><?=$role["nom"] ?></td>
-                        <td><?=$role["prenom"] ?></td>
-                    </tr>
-            <?php } ?>   
-        </tbody>
-    </table>
+        <div id="container-role">
+            <ul>
+                <?php
+                    foreach($requete->fetchAll() as $role) { 
+                        $nomRole = $role["nom_role"];
+                        ?>
+                        <li><?=$role["prenom"] ?> <?=$role["nom"] ?> dans le film <?=$role["titre"] ?></li>
+                <?php } ?>   
+            </ul>            
+        </div>
 
     <?php
     
     /* On stocke dans des variables les titres qui seront affectés sur la page template */
     $titre = "informations sur le genre";
-    $titre_secondaire = "Role : ".$nomRole;
+    $titre_secondaire = $nomRole;
     $lienCss = "detailRole";
     /* ob_start et ob_get_clean permettent d'aspirer les informations qui se situent entre ces deux fonctions, ainsi, nous pourrons envoyer tout ça sur une autre page
     Ici, nous stockons tout cela dans une variable $contenu */

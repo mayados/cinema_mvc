@@ -1,27 +1,30 @@
 <?php ob_start();?>
 
-<p>Cet acteur a joué dans <?= $requete->rowCount() ?> films</p>
+<div id="retour">
+    <a href="index.php?action=listActeurs">
+        <i class="fa-solid fa-circle-left"></i>
+        <p>Retourner en arrière</p>
+    </a>  
+</div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>FILMOGRAPHIE</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                foreach($requete->fetchAll() as $acteur) { 
-                        $acteurNom = $acteur["nom"];
-                        $acteurPrenom = $acteur["prenom"]; 
-                        $acteurSexe = $acteur["sexe"];
-                        $acteurNaissance = $acteur["date_naissance"];
-                    ?>
-                    <tr>
-                        <td><?=$acteur["titre"] ?></td>
-                    </tr>
-            <?php } ?>   
-        </tbody>
-    </table>
+<p id="compteur">Filmographie : <?= $requete->rowCount() ?> film(s)</p>
+
+<div id="container-films">
+    <ul>
+        <?php
+            foreach($requete->fetchAll() as $acteur) { 
+                    $acteurNom = $acteur["nom"];
+                    $acteurPrenom = $acteur["prenom"]; 
+                    $acteurSexe = $acteur["sexe"];
+                    $acteurNaissance = $acteur["date_naissance"];
+                ?>
+                    <li><?=$acteur["titre"] ?></li>
+        <?php } ?>      
+    </ul>    
+</div>
+
+ 
+
 
     <?php
     

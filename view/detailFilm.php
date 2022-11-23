@@ -10,7 +10,12 @@ foreach($requeteFilm->fetchAll() as $film) {
 }
 
 ?>
-
+    <div id="retour">
+        <a href="index.php?action=listFilms">
+            <i class="fa-solid fa-circle-left"></i>
+            <p>Retourner en arrière</p>
+        </a>  
+    </div>
     <div id="container-infos">
             <div id="synopsis">
                 <h4>Synopsis :</h4>           
@@ -33,25 +38,15 @@ foreach($requeteFilm->fetchAll() as $film) {
 
             <h4>Casting</h4>
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ACTEUR</th>
-                            <th>ROLE</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                            foreach($requeteCasting->fetchAll() as $casting) { ?>
-                                    <td><?=$casting["prenom"]." ".$casting["nom"] ?></td>
-                                    <td><?=$casting["nom_role"] ?></td>
-                        <?php } ?>   
-                    </tbody>
-                </table>               
+            <ul>
+                <?php
+                    foreach($requeteCasting->fetchAll() as $casting) { ?>
+                            <li><?=$casting["prenom"]." ".$casting["nom"] ?> dans le rôle de <?=$casting["nom_role"] ?></li>
+                             <td></td>
+                <?php } ?>                   
+            </ul>           
         </div>
-              
     </div>
- 
     <?php
     }
     /* On stocke dans des variables les titres qui seront affectés sur la page template */
