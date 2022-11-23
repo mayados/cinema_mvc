@@ -3,7 +3,7 @@
         <div id="retour">
                 <a href="index.php?action=listRoles">
                     <i class="fa-solid fa-circle-left"></i>
-                    <p>Retourner en arrière</p>
+                    <p>Retour</p>
                 </a>  
         </div>
         <p id="compteur">Ce personnage a été incarné par <?= $requete->rowCount() ?> acteur(s)</p>
