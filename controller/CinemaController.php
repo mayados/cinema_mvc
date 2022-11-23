@@ -94,7 +94,7 @@ class CinemaController {
         $requeteFilm->execute(["id"=> $id]);
 
         $requeteCasting = $pdo->prepare("
-            SELECT id_film, titre, duree, date_sortie, synopsis,affiche, nom, prenom, nom_role
+            SELECT id_film, titre, duree, date_sortie, synopsis,affiche, nom, prenom, nom_role, photo
             FROM casting
             LEFT JOIN acteur ON casting.id_acteur = acteur.id_acteur
             NATURAL JOIN film
