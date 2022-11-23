@@ -34,7 +34,12 @@
             case "ajoutGenre": $ctrlCinema->ajoutGenre(); break;  
             case "insertGenre": $ctrlCinema->insertGenre(); break;  
             case "ajoutFilm": $ctrlCinema->ajoutFilm(); break;  
-            case "insertFilm": $ctrlCinema->insertFilm(); break;  
+            case "insertFilm": $ctrlCinema->insertFilm(); break; 
+            case "ajoutRole": $ctrlCinema->ajoutRole(); break;   
+            case "insertRole": $ctrlCinema->insertRole(); break;   
+            case "ajoutCasting": $ctrlCinema->ajoutCasting(); break;   
+            case "insertCasting": $ctrlCinema->insertCasting(); break;
+            case "liker": $ctrlCinema->liker($id); break;      
         }
     }
 
