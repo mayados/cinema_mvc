@@ -5,11 +5,9 @@
     <div class="container-elements">
         <?php
             foreach($requete->fetchAll() as $genre) { ?>
-                    <div class="elements">
-                        <a class="elements-link" href="index.php?action=detailGenre&id=<?= $genre['id_genre']?>">
+                    <a class="element" href="index.php?action=detailGenre&id=<?= $genre['id_genre']?>">
                             <p><?=$genre["libelle"] ?></p>
-                        </a> 
-                     </div>
+                     </a>
         <?php } ?>           
     </div>
 

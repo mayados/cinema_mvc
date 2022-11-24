@@ -5,11 +5,9 @@
     <div class="container-elements">
         <?php
             foreach($requete->fetchAll() as $role) { ?>
-                    <div class="elements">
-                        <a class="elements-link" href="index.php?action=detailRole&id=<?= $role['id_role']?>">
+                        <a class="element" href="index.php?action=detailRole&id=<?= $role['id_role']?>">
                             <p><?=$role["nom_role"] ?></p>
                         </a>
-                     </div>
         <?php } ?>          
     </div>
  
