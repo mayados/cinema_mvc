@@ -114,15 +114,25 @@ class CinemaController {
         //On stocke dans une variable $pdo la connection à la base de données
         $pdo = Connect::seConnecter();
         /* L'élément id en paramètres est un élément variable, il faut donc prepare() pour s'assurer que ce qui est entré en paramètres correspond bien à ce qu'on nous demande */
-        $requete = $pdo->prepare("
-            SELECT titre, nom, prenom, sexe, date_naissance, id_realisateur
+        $requeteRealisateur = $pdo->prepare("
+            SELECT titre, nom, prenom, sexe, date_naissance,photo, id_realisateur
             FROM film
             NATURAL JOIN personne
             NATURAL JOIN realisateur
             WHERE id_realisateur = :id
         ");
         /* On execute si l'id entré est bien égal à l'id de la bdd */
-        $requete->execute(["id"=> $id]);
+        $requeteRealisateur->execute(["id"=> $id]);
+
+        $requeteFilms = $pdo->prepare("
+        SELECT titre, id_realisateur
+        FROM film
+        NATURAL JOIN personne
+        NATURAL JOIN realisateur
+        WHERE id_realisateur = :id
+    ");
+    /* On execute si l'id entré est bien égal à l'id de la bdd */
+        $requeteFilms->execute(["id"=> $id]);
 
         // On relie à la vue qui nous intéresse
         require "view/detailRealisateur.php";
@@ -133,8 +143,8 @@ class CinemaController {
         //On stocke dans une variable $pdo la connection à la base de données
         $pdo = Connect::seConnecter();
         /* L'élément id en paramètres est un élément variable, il faut donc prepare() pour s'assurer que ce qui est entré en paramètres correspond bien à ce qu'on nous demande */
-        $requete = $pdo->prepare("
-            SELECT titre, nom, prenom, sexe, date_naissance, id_acteur
+        $requeteActeur = $pdo->prepare("
+            SELECT titre,id_film, nom, prenom, sexe, date_naissance,photo, id_acteur
             FROM casting
             NATURAL JOIN personne
             NATURAL JOIN acteur
@@ -142,7 +152,18 @@ class CinemaController {
             WHERE id_acteur = :id
         ");
         /* On execute si l'id entré est bien égal à l'id de la bdd */
-        $requete->execute(["id"=> $id]);
+        $requeteActeur->execute(["id"=> $id]);
+
+        $requeteFilms = $pdo->prepare("
+            SELECT titre,id_film, id_acteur
+            FROM casting
+            NATURAL JOIN personne
+            NATURAL JOIN acteur
+            NATURAL JOIN film
+            WHERE id_acteur = :id
+        ");
+        /* On execute si l'id entré est bien égal à l'id de la bdd */
+        $requeteFilms->execute(["id"=> $id]);
 
         // On relie à la vue qui nous intéresse
         require "view/detailActeur.php";
