@@ -1,0 +1,140 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a,span{
+    text-decoration: none;
+    color: white;
+}
+
+li{
+    list-style-type: none;    
+}
+
+nav #items-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 5px;
+    background-color: black;
+    height: 7vh;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: 1.2rem;
+    border-bottom: 1px solid rgb(74, 128, 179);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+}
+
+#sous-menu {
+    position: absolute;
+    top: 4.5vh;
+    right: 10px;
+    display: none;
+    background-color: rgb(0, 0, 0);
+    width: 200px;
+}
+
+#sous-menu li{
+    padding:20px 10px 10px 10px;
+}
+
+#admin{
+    text-align: center;
+}
+
+#admin:hover #sous-menu{
+    display: block;
+} 
+
+#sous-menu li:hover{
+    background-color: rgb(74, 128, 179);
+}
+
+.nav-link:hover{
+    border-bottom: 3px solid rgb(74, 128, 179);
+}
+
+#container-page{
+    margin-top: 7vh;
+    background-color: #1d1b1b;
+    min-height: 93vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+h2{
+    padding: 50px 50px 50px 50px;
+    color: rgb(73, 136, 185);
+    font-size: 2rem;
+}
+
+#retour a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 400px;
+    
+}
+
+#retour a i{
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0,0.7);
+}
+
+#compteur{
+    color: white;
+    font-size: 1.6rem;
+    padding-top: 20px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+figure img{
+    width: 500px;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+figcaption{
+    padding: 5px;
+    text-align: center;
+    color: white;
+}
+
+#bar{
+    background-color: rgb(73, 136, 185);
+    width: 80%;
+    height: 2px;
+}
+
+li{
+    list-style: none;
+}
+
+#container-films{
+    border-radius: 10px;
+    width: 90%;
+    min-height: 10px;
+    color: rgb(119, 119, 119);
+    padding-bottom: 10px;
+}
+
+#container-films ul{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;   
+    font-size: 1.4rem; 
+    text-align: center;
+    padding-bottom: 50px;
+}
