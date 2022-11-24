@@ -12,14 +12,15 @@
     </div>
     <p id="compteur"><?= $requete->rowCount() ?> film(s)</p>
     <div id="container-infos">
-        <ul>
-                <?php
-                    foreach($requete->fetchAll() as $genre) { 
-                        $genreLibelle = $genre["libelle"];
-                        ?>
-                            <li><?=$genre["titre"] ?></li>
-                <?php } ?>         
-        </ul>        
+        <?php
+            foreach($requete->fetchAll() as $genre) { 
+                $genreLibelle = $genre["libelle"];
+                 ?>
+                <div class="infos">
+                    <img src="<?= $genre["affiche"] ?>" alt="#">
+                     <p><?=$genre["titre"] ?></p>
+                 </div>
+                <?php } ?>           
     </div>
     <?php } ?>  
     <?php
