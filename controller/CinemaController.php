@@ -175,7 +175,7 @@ class CinemaController {
         $pdo = Connect::seConnecter();
         /* L'élément id en paramètres est un élément variable, il faut donc prepare() pour s'assurer que ce qui est entré en paramètres correspond bien à ce qu'on nous demande */
         $requete = $pdo->prepare("
-            SELECT libelle, id_genre, titre
+            SELECT libelle, id_genre,affiche, titre
             FROM film
             NATURAL JOIN genre
             NATURAL JOIN associer
