@@ -30,7 +30,7 @@
         <ul>
             <?php
                 foreach($requeteFilms->fetchAll() as $film) { ?>
-                        <li><?=$film["titre"] ?></li>
+                        <li><a href="index.php?action=detailFilm&id=<?= $film["id_film"] ?>"><?=$film["titre"] ?></a></li>
             <?php } ?>           
         </ul>
     </div>
