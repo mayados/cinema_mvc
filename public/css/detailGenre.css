@@ -101,9 +101,11 @@ p{
 #container-infos{
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 100px;
     color: white;
-    width: 50%;
+                        /*********  Valeur à modifier pour responsive *********/
+    width: 70%;
     min-height: 200px;
     padding: 50px 10px 50px 10px;
 }
@@ -111,8 +113,11 @@ p{
 .infos{
     display: flex;
     align-items: center;
-    gap: 20px;
-    border: 1px solid green;
+    min-height: 200px;
+    gap: 80px;
+    width: 100%;
+                            /********  Valeur à modifier pour responsive ********/
+    padding: 0% 0% 0% 25%;
 }
 
 .infos img{
