@@ -94,9 +94,9 @@ class CinemaController {
         $requeteFilm->execute(["id"=> $id]);
 
         $requeteCasting = $pdo->prepare("
-            SELECT id_film, titre, duree, date_sortie, synopsis,affiche, nom, prenom, nom_role, photo
+            SELECT id_film, titre, duree, date_sortie, synopsis,affiche, nom, prenom, nom_role, photo, id_acteur
             FROM casting
-            LEFT JOIN acteur ON casting.id_acteur = acteur.id_acteur
+            NATURAL JOIN acteur
             NATURAL JOIN film
             NATURAL JOIN personne
             NATURAL JOIN role 
@@ -125,7 +125,7 @@ class CinemaController {
         $requeteRealisateur->execute(["id"=> $id]);
 
         $requeteFilms = $pdo->prepare("
-        SELECT titre, id_realisateur
+        SELECT titre, id_realisateur, id_film
         FROM film
         NATURAL JOIN personne
         NATURAL JOIN realisateur
@@ -175,7 +175,7 @@ class CinemaController {
         $pdo = Connect::seConnecter();
         /* L'élément id en paramètres est un élément variable, il faut donc prepare() pour s'assurer que ce qui est entré en paramètres correspond bien à ce qu'on nous demande */
         $requete = $pdo->prepare("
-            SELECT libelle, id_genre,affiche, titre
+            SELECT libelle, id_genre,affiche, titre, id_film
             FROM film
             NATURAL JOIN genre
             NATURAL JOIN associer
@@ -194,7 +194,7 @@ class CinemaController {
         $pdo = Connect::seConnecter();
         /* L'élément id en paramètres est un élément variable, il faut donc prepare() pour s'assurer que ce qui est entré en paramètres correspond bien à ce qu'on nous demande */
         $requete = $pdo->prepare("
-            SELECT nom_role,nom, prenom, titre, id_acteur
+            SELECT nom_role,nom, prenom, titre,photo, id_acteur, id_film
             FROM role
             NATURAL JOIN personne
             NATURAL JOIN acteur
