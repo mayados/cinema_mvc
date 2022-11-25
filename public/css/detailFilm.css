@@ -148,8 +148,16 @@ h2{
     justify-content: center;
     gap: 20px;
     width: 100%;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     padding-right: 30px;
+}
+
+#infos-film p i{
+    color: rgb(199, 189, 53);
+}
+
+.fa-thumbs-up:hover{
+    color: rgb(73, 136, 185);
 }
 
 #bar{
@@ -159,11 +167,11 @@ h2{
 }
 
 #container-casting{
-    border-radius: 10px;
-    width: 90%;
-    min-height: 10px;
     color: white;
-    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
 }
 
 #container-casting h4{
@@ -171,11 +179,18 @@ h2{
     padding-top: 20px;
     text-align: center;
     padding-bottom: 50px;
+    border-radius: 10px;
+    width: 70%;
+    min-height: 10px;
 }
 
 .casting-members{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 100px;
+    flex-wrap: wrap;
+    padding: 0px 10px 30px 10px;
+    width: 100%;
 }
 
 .casting-member{
@@ -186,10 +201,19 @@ h2{
     gap: 10px;
 }
 
+.acteur{
+    font-size: 1.3rem;
+}
+
+.nom-role{
+    font-size: 1.1rem;
+    color: rgb(165, 164, 164);
+}
+
 .member-photo{
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
     overflow: hidden;
 }
 
@@ -197,5 +221,9 @@ h2{
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.member-photo img:hover{
+    filter: grayscale(1);
 }
 
