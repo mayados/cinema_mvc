@@ -9,14 +9,19 @@
         <p id="compteur">Ce personnage a été incarné par <?= $requete->rowCount() ?> acteur(s)</p>
 
         <div id="container-role">
-            <ul>
                 <?php
                     foreach($requete->fetchAll() as $role) { 
                         $nomRole = $role["nom_role"];
                         ?>
-                        <li><?=$role["prenom"] ?> <?=$role["nom"] ?> dans le film <?=$role["titre"] ?></li>
-                <?php } ?>   
-            </ul>            
+                        <div class="infos">
+                            <a class="img-container" href="index.php?action=detailActeur&id=<?= $role["id_acteur"] ?>" alt="">
+                                <img src="<?= $role["photo"] ?>" alt="photo de l'acteur">                                  
+                            </a>
+                            <p class="infos-acteur"><?=$role["prenom"] ?> <?=$role["nom"] ?></p>
+                            <a class="film" href="index.php?action=detailFilm&id=<?= $role["id_film"] ?>">(<?=$role["titre"] ?>)</a>                            
+                        </div>
+                        <div class="bar"></div>
+                <?php } ?>            
         </div>
 
     <?php

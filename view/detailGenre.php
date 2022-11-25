@@ -17,9 +17,12 @@
                 $genreLibelle = $genre["libelle"];
                  ?>
                 <div class="infos">
-                    <img src="<?= $genre["affiche"] ?>" alt="#">
-                     <p><?=$genre["titre"] ?></p>
+                    <div class="container-img">
+                      <img src="<?= $genre["affiche"] ?>" alt="#">                        
+                    </div>
+                     <a href="index.php?action=detailFilm&id=<?= $genre["id_film"] ?>"><?=$genre["titre"] ?></a>
                  </div>
+                 <div class="bar"></div>
                 <?php } ?>           
     </div>
     <?php } ?>  
