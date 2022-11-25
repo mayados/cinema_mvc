@@ -9,9 +9,7 @@ a,span{
     color: white;
 }
 
-.nav-link:hover{
-    border-bottom: 3px solid rgb(74, 128, 179);
-}
+
 
 .elements-link{
     color: white;
@@ -21,6 +19,8 @@ a,span{
 li{
     list-style-type: none;    
 }
+
+                            /***************  MENU DE NAVIGATION *********************/
 
 nav{
     position: fixed;
@@ -45,6 +45,25 @@ nav #items-menu{
     font-weight: bold;
 }
 
+.nav-link:hover{
+    border-bottom: 3px solid rgb(74, 128, 179);
+}
+
+#admin{
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+                    /********************** SOUS-MENU  **********************/
+
+#admin:hover #sous-menu{
+    display: block;
+} 
+
 #sous-menu {
     position: absolute;
     top: 25px;
@@ -57,28 +76,20 @@ nav #items-menu{
     padding:20px 10px 10px 10px;
 }
 
-#admin{
-    position: relative;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
-#admin:hover #sous-menu{
-    display: block;
-} 
 
 #sous-menu li:hover{
     background-color: rgb(74, 128, 179);
 }
 
-/*Menu burger*/
+    /****Menu burger****/
+
 /*Est désactivé de base, car nous le voulons seulement pour tablettes et mobiles*/
 .burger {
     display: none;
 }
+
+                        /*******************  CONTAINER-PAGE ********************/
 
 #container-page{
     margin-top: 7vh;
@@ -103,6 +114,8 @@ p{
     margin-bottom: 30px;
     font-size: 1.4rem;
 }
+
+                                /*************  CONTAINER-ELEMENTS ***************/
 
 .container-elements{
     width: 80%;

@@ -13,6 +13,8 @@ li{
     list-style-type: none;    
 }
 
+                                    /*********  MENU DE NAVIGATION *************/
+
 nav{
     position: fixed;
     top: 0;
@@ -35,6 +37,21 @@ nav #items-menu{
     font-size: 1.2rem;
     font-weight: bold;
 }
+
+.nav-link:hover{
+    border-bottom: 3px solid rgb(74, 128, 179);
+}
+
+#admin{
+    text-align: center;
+}
+
+                                        /********  SOUS MENU *********/
+
+#admin:hover #sous-menu{
+    display: block;
+} 
+
 #sous-menu {
     position: absolute;
     top: 4.5vh;
@@ -48,27 +65,19 @@ nav #items-menu{
     padding:20px 10px 10px 10px;
 }
 
+#sous-menu li:hover{
+    background-color: rgb(74, 128, 179);
+}
+
 /*Menu burger*/
 /*Est désactivé de base, car nous le voulons seulement pour tablettes et mobiles*/
 .burger {
     display: none;
 }
 
-#admin{
-    text-align: center;
-}
 
-#admin:hover #sous-menu{
-    display: block;
-} 
 
-#sous-menu li:hover{
-    background-color: rgb(74, 128, 179);
-}
-
-.nav-link:hover{
-    border-bottom: 3px solid rgb(74, 128, 179);
-}
+                                /************  CONTAINER PAGE ***************/
 
 #container-page{
     margin-top: 7vh;
@@ -106,6 +115,8 @@ h2{
 p{
     font-size: 1.3rem;
 }
+
+                                        /**********  CONTAINER INFOS ************/
 
 #container-infos{
     display: flex;

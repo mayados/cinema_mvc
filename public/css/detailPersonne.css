@@ -36,6 +36,18 @@ nav #items-menu{
     font-weight: bold;
 }
 
+.nav-link:hover{
+    border-bottom: 3px solid rgb(74, 128, 179);
+}
+
+#admin{
+    text-align: center;
+}
+                                 /********  SOUS MENU ************/
+#admin:hover #sous-menu{
+    display: block;
+} 
+
 #sous-menu {
     position: absolute;
     top: 4.5vh;
@@ -49,27 +61,17 @@ nav #items-menu{
     padding:20px 10px 10px 10px;
 }
 
+#sous-menu li:hover{
+    background-color: rgb(74, 128, 179);
+}
+
 /*Menu burger*/
 /*Est désactivé de base, car nous le voulons seulement pour tablettes et mobiles*/
 .burger {
     display: none;
 }
 
-#admin{
-    text-align: center;
-}
-
-#admin:hover #sous-menu{
-    display: block;
-} 
-
-#sous-menu li:hover{
-    background-color: rgb(74, 128, 179);
-}
-
-.nav-link:hover{
-    border-bottom: 3px solid rgb(74, 128, 179);
-}
+                                        /************  CONTAINER PAGE **************/
 
 #container-page{
     margin-top: 7vh;
@@ -80,7 +82,6 @@ nav #items-menu{
     align-items: center;
     gap: 30px;
 }
-
 h2{
     padding: 50px 50px 50px 50px;
     color: rgb(73, 136, 185);
@@ -92,8 +93,7 @@ h2{
     align-items: center;
     justify-content: center;
     gap: 10px;
-    width: 400px;
-    
+    width: 400px; 
 }
 
 #retour a i{
@@ -131,6 +131,8 @@ figcaption{
 li{
     list-style: none;
 }
+
+                                /************  CONTAINER FILMS **************/
 
 #container-films{
     border-radius: 10px;

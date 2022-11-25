@@ -13,6 +13,8 @@ li{
     list-style-type: none;    
 }
 
+                                /***********  MENU DE NAVIGATION **************/
+
 nav{
     position: fixed;
     top: 0;
@@ -36,6 +38,20 @@ nav #items-menu{
     font-weight: bold;
 }
 
+.nav-link:hover{
+    border-bottom: 3px solid rgb(74, 128, 179);
+}
+
+#admin{
+    text-align: center;
+}
+
+                                    /********** SOUS MENU ***********/
+
+#admin:hover #sous-menu{
+    display: block;
+} 
+
 #sous-menu {
     position: absolute;
     top: 4.5vh;
@@ -49,27 +65,17 @@ nav #items-menu{
     padding:20px 10px 10px 10px;
 }
 
+#sous-menu li:hover{
+    background-color: rgb(74, 128, 179);
+}
+
 /*Menu burger*/
 /*Est désactivé de base, car nous le voulons seulement pour tablettes et mobiles*/
 .burger {
     display: none;
 }
 
-#admin{
-    text-align: center;
-}
-
-#admin:hover #sous-menu{
-    display: block;
-} 
-
-#sous-menu li:hover{
-    background-color: rgb(74, 128, 179);
-}
-
-.nav-link:hover{
-    border-bottom: 3px solid rgb(74, 128, 179);
-}
+                                    /************  CONTAINER PAGE ************/
 
 #container-page{
     margin-top: 7vh;
@@ -102,6 +108,8 @@ h2{
     font-size: 1.5rem;
     text-shadow: 1px 1px 2px rgb(0, 0, 0,0.7);
 }
+
+                                /*************  CONTAINER INFOS ****************/
 
 #container-infos{
     display: flex;
@@ -143,6 +151,8 @@ h2{
     object-fit: cover;
 }
 
+                                    /**************  CONTAINER BOTTOM *****************/
+
 #container-bottom{
     width: 100%;
     padding-top: 40px;
@@ -175,6 +185,8 @@ h2{
     width: 80%;
     height: 2px;
 }
+
+                                        /******  CONTAINER CASTING ********/
 
 #container-casting{
     color: white;

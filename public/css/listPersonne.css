@@ -22,6 +22,8 @@ li{
     list-style-type: none;    
 }
 
+                                    /*************  MENU DE NAVIGATION ****************/
+
 nav{
     position: fixed;
     top: 0;
@@ -45,6 +47,16 @@ nav #items-menu{
     font-weight: bold;
 }
 
+#admin{
+    text-align: center;
+}
+
+                                    /************* SOUS-MENU  ****************/
+
+#admin:hover #sous-menu{
+    display: block;
+} 
+
 #sous-menu {
     position: absolute;
     top: 4.5vh;
@@ -63,17 +75,11 @@ nav #items-menu{
     display: none;
 }
 
-#admin{
-    text-align: center;
-}
-
-#admin:hover #sous-menu{
-    display: block;
-} 
-
 #sous-menu li:hover{
     background-color: rgb(74, 128, 179);
 }
+
+                                /**************  CONTAINER-PAGE *****************/
 
 #container-page{
     margin-top: 7vh;
@@ -98,6 +104,8 @@ p{
     margin-bottom: 30px;
     font-size: 1.4rem;
 }
+
+                                    /*************  CONTAINER-ELEMENTS *************/
 
 .container-elements{
     width: 80%;
