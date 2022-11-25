@@ -141,3 +141,35 @@ li{
 #container-films li a{
     color: rgb(119, 119, 119);    
 }
+
+
+                                        /************* RESPONSIVE ****************/
+
+/*Tablette*/
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+    figure{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    figure img{
+        width: 300px;
+        height: 400px;
+    }
+}
+
+/*Mobile*/
+
+@media screen and (max-width: 600px) {
+
+    figure{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    figure img{
+        width: 200px;
+        height: 300px;
+    }
+}

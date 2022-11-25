@@ -157,3 +157,19 @@ li{
     width: 30%;
     height: 2px;
 }
+
+
+
+                                        /************* RESPONSIVE ****************/
+
+/*Tablette*/
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+
+}
+
+/*Mobile*/
+
+@media screen and (max-width: 600px) {
+
+}

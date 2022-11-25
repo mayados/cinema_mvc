@@ -160,3 +160,18 @@ p{
 .infos-film i{
     color: rgb(199, 189, 53);
 }
+
+
+                                        /************* RESPONSIVE ****************/
+
+/*Tablette*/
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+
+}
+
+/*Mobile*/
+
+@media screen and (max-width: 600px) {
+
+}

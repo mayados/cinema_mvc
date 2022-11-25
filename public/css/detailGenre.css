@@ -104,7 +104,6 @@ p{
     align-items: center;
     gap: 100px;
     color: white;
-                        /*********  Valeur à modifier pour responsive *********/
     width: 70%;
     min-height: 200px;
     padding: 50px 10px 50px 10px;
@@ -116,7 +115,6 @@ p{
     min-height: 200px;
     gap: 80px;
     width: 100%;
-                            /********  Valeur à modifier pour responsive ********/
     padding: 0% 0% 0% 25%;
 }
 
@@ -146,4 +144,68 @@ p{
     background-color: rgb(73, 136, 185);
     width: 10%;
     height: 2px;
+}
+
+
+                                        /************* RESPONSIVE ****************/
+
+/*Tablette*/
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+   
+    #container-infos{
+        width: 90%;
+        gap: 60px;
+    }
+   
+    .infos{
+        padding: 0;
+        gap: 10px;
+        flex-direction: column;
+    }
+
+    .infos a{
+        font-size: 1.9rem;
+    }
+
+    .infos .container-img{
+        width: 150px;
+        height: 150px;
+    }
+
+    .bar{
+        width: 70%;
+    }
+}
+
+/*Mobile*/
+
+@media screen and (max-width: 600px) {
+
+
+    #container-infos{
+        width: 90%;
+        gap: 60px;
+    }
+   
+    .infos{
+        padding: 0;
+        gap: 10px;
+        flex-direction: column;
+    }
+
+    .infos a{
+        font-size: 1.7rem;
+        text-align: center;
+    }
+
+    .infos .container-img{
+        width: 150px;
+        height: 150px;
+    }
+
+    .bar{
+        width: 70%;
+    }
+
 }
