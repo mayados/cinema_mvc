@@ -49,11 +49,11 @@ foreach($requeteFilm->fetchAll() as $film) {
                 <?php
                     foreach($requeteCasting->fetchAll() as $casting) { ?>
                         <div class="casting-member">
-                            <p><?=$casting["prenom"]." ".$casting["nom"] ?></p>
-                            <div class="member-photo">
+                            <p class="acteur"><?=$casting["prenom"]." ".$casting["nom"] ?></p>
+                            <a href="index.php?action=detailActeur&id=<?= $casting["id_acteur"] ?>" class="member-photo">
                                 <img src="<?= $casting["photo"] ?>" alt="">
-                            </div> 
-                            <p><?=$casting["nom_role"] ?></p>                           
+                            </a> 
+                            <p class="nom-role"><?=$casting["nom_role"] ?></p>                           
                         </div>
                 <?php } ?>                    
             </div>
