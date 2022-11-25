@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `associer` (
   KEY `id_film` (`id_film`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table cinema.associer : ~11 rows (environ)
+-- Listage des données de la table cinema.associer : ~14 rows (environ)
 INSERT INTO `associer` (`id_genre`, `id_film`) VALUES
 	(1, 1),
 	(2, 2),
@@ -61,7 +61,10 @@ INSERT INTO `associer` (`id_genre`, `id_film`) VALUES
 	(1, 74),
 	(14, 74),
 	(2, 76),
-	(14, 76);
+	(14, 76),
+	(12, 4),
+	(13, 19),
+	(13, 4);
 
 -- Listage de la structure de table cinema. casting
 CREATE TABLE IF NOT EXISTS `casting` (
