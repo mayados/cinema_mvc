@@ -13,6 +13,16 @@ li{
     list-style-type: none;    
 }
 
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    border-bottom: 1px solid rgb(74, 128, 179);
+    height: 7vh;
+}
+
 nav #items-menu{
     display: flex;
     flex-direction: row;
@@ -20,16 +30,10 @@ nav #items-menu{
     align-items: center;
     gap: 5px;
     background-color: black;
-    height: 7vh;
     padding-left: 40px;
     padding-right: 40px;
     font-size: 1.2rem;
-    border-bottom: 1px solid rgb(74, 128, 179);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
+    font-weight: bold;
 }
 
 #sous-menu {
@@ -43,6 +47,12 @@ nav #items-menu{
 
 #sous-menu li{
     padding:20px 10px 10px 10px;
+}
+
+/*Menu burger*/
+/*Est désactivé de base, car nous le voulons seulement pour tablettes et mobiles*/
+.burger {
+    display: none;
 }
 
 #admin{
@@ -162,14 +172,99 @@ li{
 
                                         /************* RESPONSIVE ****************/
 
-/*Tablette*/
 
-@media screen and (min-width: 601px) and (max-width: 1024px) {
+/*Mobile et tablette (car même affichage)*/
 
-}
+@media screen and (max-width: 1024px) {
 
-/*Mobile*/
+    #admin{
+        display: none;
+    }
 
-@media screen and (max-width: 600px) {
+    header{
+        position: relative;
+    }
+
+    nav{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    nav #items-menu {
+        flex-direction: column;
+        height: auto;
+        margin-top: 0;
+        top: 0;
+        position: absolute;
+        transform: translateY(-250px);
+    }
+
+    nav #items-menu span{
+        display: none;
+    }
+
+    /*Menu burger*/
+    .burger {
+        display: block;
+        position: relative;
+        width: 45px;
+        height: 45px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    .bar-burger {
+        display: block;
+        width: 45px;
+        height: 4px;
+        border-radius: 3px;
+        background: rgb(255, 255, 255);
+        transition: all .5s ease-in-out;
+    }
+
+    .bar-burger::before,
+    .bar-burger::after {
+        content: "";
+        width: 45px;
+        height: 4px;
+        position: absolute;
+        left: 0;
+        background: rgb(255, 255, 255);
+        border-radius: 3px;
+        transition: all .5s ease-in-out;
+    }
+
+
+    /*Ici on indique à combien de pixels se trouvent les barres du dessous et du dessus*/
+    .bar-burger::before {
+        transform: translateY(-12px)
+    }
+
+    .bar-burger::after {
+        transform: translateY(12px)
+    }
+
+    nav{
+        background-color: black;
+    }
+
+        /*Cette class show-nav a été ajoutée à partir du code JS, elle permet de réafficher les éléments (placés auparavant dans la partie non visible de l'écran en haut*/
+        .show-nav #items-menu {
+            /*Il faut à nouveau ajouter la couleur de fond car sinon les éléments sortent du flux (=ils sortent du menu)*/
+            background-color: black;
+            /*La taille que prennent  les éléments par rapport à la largeur du viewport*/
+            width: 100vw;
+            height: 100vh;
+            /*On remet les éléments à leur place d'origine*/
+            transform: translateY(0);
+            transition: 2s;
+        }
+    
+        .show-nav .burger {   
+            transition: 2s;
+        }
 
 }
