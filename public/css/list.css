@@ -32,6 +32,7 @@ nav{
     width: 100%;
     border-bottom: 1px solid rgb(74, 128, 179);
     height: 7vh;
+    background-color: black;
 }
 
 nav #items-menu{
@@ -45,6 +46,7 @@ nav #items-menu{
     padding-right: 40px;
     font-size: 1.2rem;
     font-weight: bold;
+    height: 100%;
 }
 
 #admin{
