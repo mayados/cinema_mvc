@@ -1,5 +1,8 @@
 <?php
 
+    /* On commence la session */
+    session_start();
+
     // On dit qu'on utilise la class CinemaController située dans le namespace en question
     use Controller\CinemaController;
 
