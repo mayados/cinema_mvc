@@ -105,6 +105,7 @@ class CinemaController {
 
         $requeteCasting->execute(["id"=> $id]);
 
+
         // On relie à la vue qui nous intéresse
         require "view/detailFilm.php";
     }
@@ -555,19 +556,30 @@ class CinemaController {
     /* Fonction appelée dès que l'on ajoute un like */
     public function liker($id) {
 
-        $pdo = Connect::seConnecter();
-        /* On incrémente la valeur de 1 en base de données dès que la fonction est appelée */
-        $requeteLike = $pdo->query("
-            UPDATE film 
-            SET nombreLike=nombreLike+1
-            WHERE id_film = $id 
-        ");
+        /* le film contenu dans la session est égal au film entré en paramètre */
+        /* A chaque fois qu'on like, on ajoute en SESSION l'id (=si on like plusieurs fois, l'id sera stocké plusieurs fois) */
+        $_SESSION["film"][] = $id;
+        // print_r(array_count_values($_SESSION["film"]));die;
+         $likes = array_count_values($_SESSION["film"]);
+        /* On doit compter le nombre de valeurs dans le tableau de session, correspondant à l'id entré en paramètres (= s'il apparait une fois c'est qu'il y a un like, s'il apparait plusieurs fois c'est qu'il y a plusieurs like) */
+        /* Pour vérifier si on a l'id plusieurs fois dans le tableau de SESSION quand on like plusieurs fois */
+        // var_dump($_SESSION["film"]);die;
 
-        
+        /* S'il y a un like, on exécute la requête */
+        /* La fonction array_count_values renvoie en tableau, il faut donc préciser que c'est la valeur de l'id précis qui doit être égale à un */
+        if($likes[$id] === 1){
+            $pdo = Connect::seConnecter();            
+            /* On incrémente la valeur de 1 en base de données dès que la fonction est appelée */
+            $requeteLike = $pdo->query("
+                UPDATE film 
+                SET nombreLike=nombreLike + 1
+                WHERE id_film = $id 
+            ");
+            header('Location: index.php?action=detailFilm&id='.$id.'');       
+        }else{
+            header('Location: index.php?action=detailFilm&id='.$id.''); 
+        }             
 
-        header('Location: index.php?action=detailFilm&id='.$id.'');
-        /* Die pour être sûrs que ca ne fait rien d'autre après la redirection = éviter les mauvais comportements */
-        die; 
     }
 
 }
